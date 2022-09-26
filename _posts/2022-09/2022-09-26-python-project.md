@@ -1,7 +1,7 @@
 ---
 title: 'Python Project'
 published: true
-tags: PEP8 Poetry Git
+tags: PEP8 Poetry Git Sphinx
 ---
 
 ### PEP8 on ASCII Compatibility: 
@@ -236,9 +236,25 @@ git remote add origin git@github.com:jacobtianzeyu/my-package.git
 git push -u origin main 
 ```
 
+### Sphinx
+```commandline
+poetry sphinx-quickstart docs
+poetry sphinx-build -b html docs/source/ docs/build/html
+# cd docs
+# make html
+poetry add sphinx-rtd-theme --group docs
+poetry add sphinx-autodoc-typehints --group docs
+poetry add sphinx-autobuild --group docs
+poetry add sphinxcontrib-napoleon --group docs
+```
+
+
 
 ### Reference
 - [https://peps.python.org/pep-0008/#package-and-module-names](https://peps.python.org/pep-0008/#package-and-module-names)
 - [https://python-poetry.org/docs/cli/](https://python-poetry.org/docs/cli/)
 - [https://python-poetry.org/docs/basic-usage/](https://python-poetry.org/docs/basic-usage/)
 - [https://python-poetry.org/docs/pyproject/](https://python-poetry.org/docs/pyproject/)
+- [https://tomasfarias.dev/posts/sphinx-docs-with-poetry-and-github-pages/](https://tomasfarias.dev/posts/sphinx-docs-with-poetry-and-github-pages/)
+- [https://www.sphinx-doc.org/en/master/tutorial/first-steps.html](https://www.sphinx-doc.org/en/master/tutorial/first-steps.html)
+- 
