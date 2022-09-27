@@ -19,7 +19,7 @@ Note that there is a separate convention for builtin names: most builtin names a
 
 ### Poetry
 use poetry to create a project with a src folder at local
-```commandline
+```shell
 poetry new --src my-package
 ```
 Poetry assumes your package contains a package with the same name as `tool.poetry.name` located in the root of your project. If this is not the case, populate `tool.poetry.packages` to specify your packages and their locations.
@@ -29,7 +29,7 @@ Similarly, the traditional `MANIFEST.in` file is replaced by the `tool.poetry.re
 Poetry will require you to explicitly specify what versions of Python you intend to support, and its universal locking will guarantee that your project is installable (and all dependencies claim support for) all supported Python versions.
 
 That will create a folder structure as follows:
-```commandline
+```
 my-package
 ├── pyproject.toml
 ├── README.md
@@ -43,7 +43,7 @@ my-package
 
 #### pyproject.toml 
 
-```commandline
+```
 [tool.poetry]
 name = "my-project"
 version = "0.1.0"
@@ -81,11 +81,11 @@ the recommended notation for the most common licenses is (alphabetical):
 Optional, but it is highly recommended to supply this.
 
 ##### specifying dependencies 
-```commandline
+```
 [tool.poetry.dependencies]
 pendulum = "^2.1"
 ```
-```commandline
+```shell
 poetry add pendulum
 ```
 ##### Virtual Environment 
@@ -96,11 +96,12 @@ By default, Poetry creates a virtual environment in `{cache-dir}/virtualenvs`. Y
   - if you have command line tools such as `pytest` or `black` you can run them using `poetry run pytest`
 - `poetry shell`
   - `exit`
+  - `deactivate`
 #### managing and installing dependencies
 Poetry provides a way to organize your dependencies by groups. For instance, you might have dependencies that are only needed to test your project or to build the documentation.
 
 To declare a new dependency group, use a tool.poetry.group.<group> section where <group> is the name of your dependency group (for instance, test):
-```commandline
+```shell
 [tool.poetry.group.test]  # This part can be left out
 
 [tool.poetry.group.test.dependencies]
@@ -108,7 +109,7 @@ pytest = "^6.0.0"
 pytest-mock = "*"
 ```
 The dependencies declared in tool.poetry.dependencies are part of an implicit main group.
-```commandline
+```shell
 [tool.poetry.dependencies]  # main dependency group
 httpx = "*"
 pendulum = "*"
@@ -122,13 +123,13 @@ To declare a set of dependencies, which add additional functionality to the proj
 
 Any dependency declared in the dev-dependencies section will automatically be added to a dev group. So the two following notations are equivalent:
 
-```commandline
+```sehll
 [tool.poetry.dev-dependencies]
 pytest = "^6.0.0"
 pytest-mock = "*"
 ```
 
-```commandline
+```shell
 [tool.poetry.group.dev.dependencies]
 pytest = "^6.0.0"
 pytest-mock = "*"
@@ -137,7 +138,7 @@ pytest-mock = "*"
 A dependency group can be declared as optional. This makes sense when you have a group of dependencies that are only required in a particular environment or for a specific purpose.
 Optional groups can be installed in addition to the default dependencies by using the `--with` option of the install command.
 Optional group dependencies will still be resolved alongside other dependencies, so special care should be taken to ensure they are compatible with each other.
-```commandline
+```
 [tool.poetry.group.docs]
 optional = true
 
@@ -145,16 +146,16 @@ optional = true
 mkdocs = "*"
 ```
 adding a dependency to a group
-```commandline
+```shell 
 poetry install --with docs
 poetry add pytest --group test
 poetry remove mydocs --group docs
 ```
 
 installing dependencies 
-```commandline
+```shell
 poetry install
-poetry install --without test,docs
+poetry install --without test, docs
 poetry install --with test,docs
 poetry install --only test,docs
 poetry install --only-root 
@@ -177,7 +178,7 @@ poetry install --extras "mysql pgsql"
 - `--no-dev`: Do not install dev dependencies. (Deprecated, use --without dev or --only main instead)
 - `--remove-untracked`: Remove dependencies not presented in the lock file. (Deprecated, use --sync instead)
 
-```commandline
+```shell
 poetry update
 poetry update requests toml
 poetry add requests pendulum 
@@ -198,28 +199,28 @@ poetry check
 poetry lock 
 ```
 The run command executes the given command inside the project’s virtualenv.
-```commandline
+```shell
 poetry run python -V
 ```
 It can also execute one of the scripts defined in pyproject.toml.
-```commandline
+```
 [tool.poetry.scripts]
 my-script = "my_module:main"
 ```
-```commandline
+```shell
 poetry run my-script
 ```
 
 
 #### Installing a pre-existing project 
 Instead of creating a new project, Poetry can be used to ‘initialise’ a pre-populated directory. To interactively create a pyproject.toml file in directory pre-existing-project
-```commandline
+```shell
 cd my-package 
 poetry init
 ```
 
 #### packaging and publishing
-```commandline
+```shell
 poetry build
 poetry publish 
 poetry publish -r my-repository
@@ -227,28 +228,34 @@ poetry publish -r my-repository
 
 ### Github
 Github create new repo with the same name. 
-```commandline
+
+```shell
 git init 
 git add -a
 git commit -m "first commit"
 git branch -M main 
 git remote add origin git@github.com:jacobtianzeyu/my-package.git
 git push -u origin main 
+git rm -r --cache files/or/folders/to/exclude
+git add -A
+git status 
 ```
 
 ### Sphinx
-```commandline
+
+```shell
 poetry sphinx-quickstart docs
-poetry sphinx-build -b html docs/source/ docs/build/html
-# cd docs
-# make html
+poetry run sphinx-build -b html source/ build/html
+poetry run sphinx-autobuild docs docs/build/html
+
+cd docs
+poetry run make html
+
 poetry add sphinx-rtd-theme --group docs
 poetry add sphinx-autodoc-typehints --group docs
 poetry add sphinx-autobuild --group docs
 poetry add sphinxcontrib-napoleon --group docs
 ```
-
-
 
 ### Reference
 - [https://peps.python.org/pep-0008/#package-and-module-names](https://peps.python.org/pep-0008/#package-and-module-names)
@@ -257,4 +264,3 @@ poetry add sphinxcontrib-napoleon --group docs
 - [https://python-poetry.org/docs/pyproject/](https://python-poetry.org/docs/pyproject/)
 - [https://tomasfarias.dev/posts/sphinx-docs-with-poetry-and-github-pages/](https://tomasfarias.dev/posts/sphinx-docs-with-poetry-and-github-pages/)
 - [https://www.sphinx-doc.org/en/master/tutorial/first-steps.html](https://www.sphinx-doc.org/en/master/tutorial/first-steps.html)
-- 
