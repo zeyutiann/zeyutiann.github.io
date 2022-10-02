@@ -31,6 +31,7 @@
   }
 
   blockquote {
+    //background-color: #cdceca;
     color: #6a737d;
     border-left: 2px solid #959da5;
     padding-left: 16px;
@@ -54,4 +55,16 @@
 
 td, th {
     border: 1px solid grey
+}
+
+
+pre , code{
+    background-color: #cdceca;
+
+    //color: #6a737d;
+    //border-radius: 6px;
+  //text-shadow: 0 1px; //14161800 !important;
+  //background: #cdceca ;//!important;
+  //span.token.operator.background: none;
+  //span.token.keyword.color: #866cba
 }
