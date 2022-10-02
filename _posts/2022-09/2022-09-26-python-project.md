@@ -6,7 +6,7 @@ tags: PEP8 Poetry Git Sphinx
 
 ### PEP8 on ASCII Compatibility: 
 #### Package and Module Names
-Modules should `def __init__()`{:.python} have short, all-lowercase names. Underscores can be used in the module name if it improves readability. Python packages should also have short, all-lowercase names, although the use of underscores is discouraged.
+Modules should have short, all-lowercase names. Underscores can be used in the module name if it improves readability. Python packages should also have short, all-lowercase names, although the use of underscores is discouraged.
 
 When an extension module written in C or C++ has an accompanying Python module that provides a higher level (e.g. more object oriented) interface, the C/C++ module has a leading underscore (e.g. _socket).
 #### Class Names
@@ -85,6 +85,7 @@ Optional, but it is highly recommended to supply this.
 [tool.poetry.dependencies]
 pendulum = "^2.1"
 ```
+
 ```shell
 poetry add pendulum
 ```
@@ -101,7 +102,7 @@ By default, Poetry creates a virtual environment in `{cache-dir}/virtualenvs`. Y
 Poetry provides a way to organize your dependencies by groups. For instance, you might have dependencies that are only needed to test your project or to build the documentation.
 
 To declare a new dependency group, use a tool.poetry.group.<group> section where <group> is the name of your dependency group (for instance, test):
-```shell
+```
 [tool.poetry.group.test]  # This part can be left out
 
 [tool.poetry.group.test.dependencies]
@@ -109,7 +110,8 @@ pytest = "^6.0.0"
 pytest-mock = "*"
 ```
 The dependencies declared in tool.poetry.dependencies are part of an implicit main group.
-```shell
+
+```
 [tool.poetry.dependencies]  # main dependency group
 httpx = "*"
 pendulum = "*"
@@ -123,21 +125,22 @@ To declare a set of dependencies, which add additional functionality to the proj
 
 Any dependency declared in the dev-dependencies section will automatically be added to a dev group. So the two following notations are equivalent:
 
-```sehll
+```
 [tool.poetry.dev-dependencies]
 pytest = "^6.0.0"
 pytest-mock = "*"
 ```
 
-```shell
+```
 [tool.poetry.group.dev.dependencies]
 pytest = "^6.0.0"
 pytest-mock = "*"
-
 ```
+
 A dependency group can be declared as optional. This makes sense when you have a group of dependencies that are only required in a particular environment or for a specific purpose.
 Optional groups can be installed in addition to the default dependencies by using the `--with` option of the install command.
 Optional group dependencies will still be resolved alongside other dependencies, so special care should be taken to ensure they are compatible with each other.
+
 ```
 [tool.poetry.group.docs]
 optional = true
@@ -145,15 +148,33 @@ optional = true
 [tool.poetry.group.docs.dependencies]
 mkdocs = "*"
 ```
+
 adding a dependency to a group
-```shell 
+```shell
 poetry install --with docs
 poetry add pytest --group test
+# poetry add 
+poetry add requests pendulum 
+# Allow >=2.0.5, <3.0.0 versions
+poetry add pendulum@^2.0.5
+# Allow >=2.0.5, <2.1.0 versions
+poetry add pendulum@~2.0.5
+# Allow >=2.0.5 versions, without upper bound
+poetry add "pendulum>=2.0.5"
+# Allow only 2.0.5 version
+poetry add pendulum==2.0.5
+poetry add pendulum@latest
+poetry add mkdocs --group docs
 poetry remove mydocs --group docs
+
 ```
 
 installing dependencies 
 ```shell
+# poetry install 
+#   it lazily installs, it first checks if a poetry.lock exists, and if it already exists, it just install those. 
+#   if no lock file, it acts like poetry update, and tries to resolve dependencies in pyproject.toml, create a poetry.lock and install them
+#   it is the same as poetry update if there's no lockfile. 
 poetry install
 poetry install --without test, docs
 poetry install --with test,docs
@@ -162,6 +183,7 @@ poetry install --only-root
 poetry install --sync 
 poetry install --extras "mysql pgsql"
 ``` 
+
 - `test, docs` are dependencies groups
 - `--only-root` install the project itself with no depdendencies, skipp the installation
 - `--sync` sync your enviornment, and ensure it matches the lock file
@@ -178,30 +200,43 @@ poetry install --extras "mysql pgsql"
 - `--no-dev`: Do not install dev dependencies. (Deprecated, use --without dev or --only main instead)
 - `--remove-untracked`: Remove dependencies not presented in the lock file. (Deprecated, use --sync instead)
 
+updating dependencies 
 ```shell
+# poetry update
+#   updates the package and then installs the updates
+#   resolve dependencies to be compatible with each other, just like lock
+#   creates or updates poetry.lock like poetry lock 
+#   installs the packages
 poetry update
 poetry update requests toml
-poetry add requests pendulum 
-# Allow >=2.0.5, <3.0.0 versions
-poetry add pendulum@^2.0.5
-# Allow >=2.0.5, <2.1.0 versions
-poetry add pendulum@~2.0.5
-# Allow >=2.0.5 versions, without upper bound
-poetry add "pendulum>=2.0.5"
-# Allow only 2.0.5 version
-poetry add pendulum==2.0.5
-poetry add pendulum@latest
-poetry add mkdocs --group docs
-poetry remove pendulum
-poetry remove mkdocs --group docs
-poetry show
-poetry check 
-poetry lock 
 ```
+
+poetry lock
+``` shell
+# poetry lock 
+#   it does not install packages, it just generates a poetry.lock file.
+#   creates a `poetry.lock` but does not install packages
+#   The lock command reads the pyproject.toml file from the current directory, processes it, and locks the dependencies in the poetry.lock file
+#   Processing means resolving dependencies to be compatible (with the latest version by default).   
+poetry lock 
+#  --no-update will prevent any updates. so it will just refresh the lock file per latest pyproject.toml, without updating dependencies.  
+poetry lock --no-update 
+```
+
+```shell
+# poetry show 
+#   it shows the installed pkgs
+poetry show
+
+# poetry check 
+poetry check 
+```
+
 The run command executes the given command inside the project’s virtualenv.
 ```shell
 poetry run python -V
 ```
+
 It can also execute one of the scripts defined in pyproject.toml.
 ```
 [tool.poetry.scripts]
@@ -226,6 +261,22 @@ poetry publish
 poetry publish -r my-repository
 ```
 
+I have one project, I'd like to publish as packages targeting two Python versions. 
+``` 
+[tool.poetry.dependencies]
+python='^3.6'
+```
+```shell
+poetry add <dependency> python ^3.6
+```
+```
+[tool.poetry.dependencies]
+python='^3.6'
+cleo = {version="^0.8.1",python="^3.6"}
+pyyaml = {version="^5.4.1", python="^3.6"}
+```
+
+
 ### Github
 Github create new repo with the same name. 
 
@@ -240,13 +291,14 @@ git rm -r --cache files/or/folders/to/exclude
 git add -A
 git status 
 ```
+standard [.gitignore](https://github.com/github/gitignore/blob/main/Python.gitignore)
 
 ### Sphinx
 
 ```shell
 poetry sphinx-quickstart docs
-poetry run sphinx-build -b html source/ build/html
-poetry run sphinx-autobuild docs docs/build/html
+poetry run sphinx-build -b html docs/source/ docs/build/html
+
 
 cd docs
 poetry run make html
@@ -255,6 +307,8 @@ poetry add sphinx-rtd-theme --group docs
 poetry add sphinx-autodoc-typehints --group docs
 poetry add sphinx-autobuild --group docs
 poetry add sphinxcontrib-napoleon --group docs
+
+poetry run sphinx-autobuild docs docs/build/html
 ```
 
 ### Reference
