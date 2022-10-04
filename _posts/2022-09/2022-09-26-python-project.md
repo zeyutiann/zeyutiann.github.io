@@ -293,6 +293,47 @@ git status
 ```
 standard [.gitignore](https://github.com/github/gitignore/blob/main/Python.gitignore)
 
+git commit message: 
+```shell
+[type] [optional scope]: [description]
+
+[optional body]
+
+[optional footer(s)]
+```
+
+example: 
+```shell
+test: add negative test for entering mobile number
+
+add test scenario to check if entering character as mobile number is forbidden 
+
+TST-145
+```
+
+
+- type: 
+  - fix: patches a bug in our codebase
+  - feat: introduces a new feature
+  - refactor: introduce a breaking 
+  - docs
+  - build
+  - chore
+  - style
+  - perf
+  - test
+
+The symbol ! can be used with any type. It signifies a breaking change that correlates with MAJOR in semantic versioning
+
+- scope: this is optional
+
+- summary: should not be long 
+
+- body: optional, explain motivation of change
+
+- footer: jira/issue id 
+
+ 
 ### Sphinx
 
 ```shell
