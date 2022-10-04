@@ -359,3 +359,5 @@ poetry run sphinx-autobuild docs docs/build/html
 - [https://python-poetry.org/docs/pyproject/](https://python-poetry.org/docs/pyproject/)
 - [https://tomasfarias.dev/posts/sphinx-docs-with-poetry-and-github-pages/](https://tomasfarias.dev/posts/sphinx-docs-with-poetry-and-github-pages/)
 - [https://www.sphinx-doc.org/en/master/tutorial/first-steps.html](https://www.sphinx-doc.org/en/master/tutorial/first-steps.html)
+- [https://github.com/joelparkerhenderson/git-commit-message](https://github.com/joelparkerhenderson/git-commit-message)
+- [https://reflectoring.io/meaningful-commit-messages/#:~:text=The%20commit%20message%20should%20describe,commit%20message%20can%20be%20helpful.](https://reflectoring.io/meaningful-commit-messages/#:~:text=The%20commit%20message%20should%20describe,commit%20message%20can%20be%20helpful.)
