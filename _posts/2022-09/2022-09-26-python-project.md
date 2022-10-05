@@ -4,6 +4,7 @@ published: true
 tags: PEP8 Poetry Git Sphinx
 ---
 
+## Quick notes on starting a python project
 ### PEP8 on ASCII Compatibility: 
 #### Package and Module Names
 Modules should have short, all-lowercase names. Underscores can be used in the module name if it improves readability. Python packages should also have short, all-lowercase names, although the use of underscores is discouraged.
