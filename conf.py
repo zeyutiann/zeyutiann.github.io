@@ -19,7 +19,7 @@ import alabaster
 # blog_path = 'blog'
 
 # The "title" for the blog, used in active pages.  Default is ``'Blog'``.
-blog_title = "Jacob's blog Blog"
+blog_title = "Technical Blog"
 
 # Base URL for the website, required for generating feeds.
 # e.g. blog_baseurl = "http://example.com/"
@@ -193,7 +193,6 @@ extensions = [
     'sphinx.ext.githubpages',
     'sphinx.ext.autodoc',
     'alabaster',
-
     'ablog',
 ]
 
@@ -210,7 +209,7 @@ source_suffix = ".rst"
 master_doc = "index"
 
 # General information about the project.
-project = "Jacob's blog"
+project = "zytiann's blog"
 copyright = "2022, TIAN Zeyu"
 author = "TIAN Zeyu"
 
@@ -363,6 +362,6 @@ html_static_path = ["_static"]
 # html_search_scorer = 'scorer.js'
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = "Jacobsblogdoc"
+htmlhelp_basename = "zytiannsblogdoc"
 
 
