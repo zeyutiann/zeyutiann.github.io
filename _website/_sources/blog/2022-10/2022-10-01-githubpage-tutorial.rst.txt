@@ -1,0 +1,25 @@
+
+.. Jacob's blog post example, created by `ablog start` on Oct 06, 2022.
+
+.. post:: Oct 06, 2022
+   :tags: githubpage-sphinx-tutorial
+   :category: Chore
+   :author: TIAN Zeyu
+
+
+################
+How to
+################
+
+.. code-block:: shell
+
+    poetry add ablog
+    poetry add sphinx-rtd-theme
+    poetry add sphinxcontrib-napoleon
+    poetry add myst-parser
+
+    touch .nojekyll
+    git
+
+
+

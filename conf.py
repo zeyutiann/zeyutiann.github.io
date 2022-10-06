@@ -190,7 +190,10 @@ extensions = [
     'sphinx.ext.extlinks',
     'sphinx.ext.intersphinx',
     'sphinx.ext.todo',
+    'sphinx.ext.githubpages',
+    'sphinx.ext.autodoc',
     'alabaster',
+
     'ablog',
 ]
 
