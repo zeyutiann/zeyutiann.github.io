@@ -3,15 +3,13 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to TIAN Zeyu's Blog!
+Welcome to my technical blog.
 ========================================
 
-Hello World! Find more about me here: :ref:`about`
 
+recent posts:
 
-Here is a list of most recent posts:
-
-.. postlist:: 5
+.. postlist:: 10
    :excerpts:
 
 

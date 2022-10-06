@@ -1,8 +1,8 @@
 
 .. _about:
 
-About TIAN Zeyu
+About Author
 ============================
 
-Jacob is a part time coder and full time quant.
+TIAN Zeyu (Jacob) is a part time coder and full time quant.
 

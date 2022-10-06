@@ -14,7 +14,6 @@
     <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../../_static/doctools.js"></script>
     <script src="../../../_static/sphinx_highlight.js"></script>
-    <link rel="author" title="About these documents" href="../../../about/" />
     <link rel="index" title="Index" href="../../../genindex/" />
     <link rel="search" title="Search" href="../../../search/" /> 
    
@@ -59,13 +58,37 @@
           <div class="body" role="main">
              <div class="section" id="how-to">
 <h1>How to<a class="headerlink" href="#how-to" title="Permalink to this heading">¶</a></h1>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>poetry add ablog
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>touch pyproject.toml
+poetry add ablog
 poetry add sphinx-rtd-theme
 poetry add sphinxcontrib-napoleon
 poetry add myst-parser
+poetry add sphinx-autobuild
 
 touch .nojekyll
 git
+</pre></div>
+</div>
+<p>a sample project toml file:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>tool.poetry<span class="o">]</span>
+<span class="nv">name</span> <span class="o">=</span> <span class="s2">&quot;zeyutiann.github.io&quot;</span>
+<span class="nv">version</span> <span class="o">=</span> <span class="s2">&quot;0.1.0&quot;</span>
+<span class="nv">description</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+<span class="nv">authors</span> <span class="o">=</span> <span class="o">[</span><span class="s2">&quot;Zeyu Tian &lt;olivandertian@yahoo.com&gt;&quot;</span><span class="o">]</span>
+<span class="nv">readme</span> <span class="o">=</span> <span class="s2">&quot;README.rst&quot;</span>
+<span class="nv">packages</span> <span class="o">=</span> <span class="o">[{</span><span class="nv">include</span> <span class="o">=</span> <span class="s2">&quot;poetry_demo&quot;</span><span class="o">}]</span>
+
+<span class="o">[</span>tool.poetry.dependencies<span class="o">]</span>
+<span class="nv">python</span> <span class="o">=</span> <span class="s2">&quot;^3.7&quot;</span>
+<span class="nv">ablog</span> <span class="o">=</span> <span class="s2">&quot;^0.10.29&quot;</span>
+sphinx-rtd-theme <span class="o">=</span> <span class="s2">&quot;^1.0.0&quot;</span>
+sphinxcontrib-napoleon <span class="o">=</span> <span class="s2">&quot;^0.7&quot;</span>
+myst-parser <span class="o">=</span> <span class="s2">&quot;^0.18.1&quot;</span>
+
+
+<span class="o">[</span>build-system<span class="o">]</span>
+<span class="nv">requires</span> <span class="o">=</span> <span class="o">[</span><span class="s2">&quot;poetry-core&quot;</span><span class="o">]</span>
+build-backend <span class="o">=</span> <span class="s2">&quot;poetry.core.masonry.api&quot;</span>
 </pre></div>
 </div>
 </div>
@@ -135,7 +158,7 @@ git
 </ul>
 <h3>Navigation</h3>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../about/">About TIAN Zeyu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about/">About TIAN Zeyu</a></li>
 </ul>
 
 
