@@ -1,7 +1,7 @@
 
 .. Jacob's blog post example, created by `ablog start` on Oct 06, 2022.
 
-.. post:: Oct 01, 2022
+.. post:: 2022.10.01
    :tags: githubpage, sphinx, tutorial
    :category: Chores
    :author: TIAN Zeyu
@@ -89,35 +89,66 @@ a sample for index.html
 
     <meta http-equiv="refresh" content="0; url=./_website/index.html" />
 
+markdown support
+=================
 
-tags and category
-==================
+Install myst-parser, and add these options to your conf.py
 
-common tags and category are documented here:
-    - tags can be anything, it's the one word summary for the blog.
-    - categories are restricted as below.
+.. code-block:: python
 
-* tags
-    * sphinx
-    * poetry
+    extensions=[...,
+    "myst_parser",
+    ...
+    ]
 
-* category
-    * Python
-    * Git
-    * Java
-    * Cpp
-    * Kx
-    * DesignPattern
-    * Algorithm
-    * Chores
+    myst_update_mathjax = False
 
+sample blog header format:
 
+.. code-block:: shell
+
+    ---
+    blogpost: true
+    date: Oct 10, 2020
+    author: Nabil Freij
+    location: World
+    category: Manual
+    language: English
+    ---
+
+Notice here we do not have a “:” at the start since the markdown metadata format is different from rst.
+
+Please be aware that adding “myst-parser” will mean it will read all markdown files and try to parse them. You will need to use the following in your conf.py to prevent this:
+
+.. code-block:: python
+
+    exclude_patterns = [
+        "posts/*/.ipynb_checkpoints/*",
+        ".github/*",
+        ".history",
+        "github_submodule/*",
+        "LICENSE.md",
+        "README.md",
+    ]
+
+If you want to use Markdown files with extensions other than .md, adjust the source_suffix variable. The following example configures Sphinx to parse all files with the extensions .md and .txt as Markdown:
+
+.. code-block:: python
+
+    source_suffix = {
+    '.rst': 'restructuredtext',
+    '.txt': 'markdown',
+    '.md': 'markdown',
+    }
 
 reference:
 ===========
 
 - https://documentation-style-guide-sphinx.readthedocs.io/en/latest/
--
+- https://ablog.readthedocs.io/manual/markdown/
+- https://ablog.readthedocs.io/
+- https://www.sphinx-doc.org/en/master/usage/configuration.html#confval-html_sidebars
+- https://sphinx.silverrainz.me/isso/
 
 
 

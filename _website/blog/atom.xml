@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+  <id>https://zeyutiann.github.io/</id>
+  <title>Technical Blog</title>
+  <updated>2022-10-06T16:38:37.787844+00:00</updated>
+  <link href="https://zeyutiann.github.io/"/>
+  <link href="https://zeyutiann.github.io/blog/atom.xml" rel="self"/>
+  <generator uri="https://ablog.readthedocs.org/" version="0.10.29">ABlog</generator>
+  <entry>
+    <id>https://zeyutiann.github.io/blog/2022-09/2022-09-26-python-project.html</id>
+    <title>Quick notes on starting a python projects</title>
+    <updated>2022-09-26T00:00:00+08:00</updated>
+    <author>
+      <name>TIAN Zeyu</name>
+    </author>
+    <content type="html">&lt;div class="ablog-post-excerpt docutils container"&gt;
+&lt;p&gt;all code that I referred to when I setup my first python projects.&lt;/p&gt;
+&lt;/div&gt;
+</content>
+    <link href="https://zeyutiann.github.io/blog/2022-09/2022-09-26-python-project.html" rel="alternate"/>
+    <summary>all code that I referred to when I setup my first python projects.</summary>
+    <category term="git" label="git"/>
+    <category term="pep8" label="pep8"/>
+    <category term="poetry" label="poetry"/>
+    <category term="sphinx" label="sphinx"/>
+    <published>2022-09-26T00:00:00+08:00</published>
+  </entry>
+  <entry>
+    <id>https://zeyutiann.github.io/blog/2022-10/2022-10-01-githubpage-tutorial.html</id>
+    <title>GithubPage Sphinx Tutorial</title>
+    <updated>2022-10-01T00:00:00+08:00</updated>
+    <author>
+      <name>TIAN Zeyu</name>
+    </author>
+    <content type="html">&lt;div class="ablog-post-excerpt docutils container"&gt;
+&lt;p&gt;a sample project toml file example:&lt;/p&gt;
+&lt;/div&gt;
+</content>
+    <link href="https://zeyutiann.github.io/blog/2022-10/2022-10-01-githubpage-tutorial.html" rel="alternate"/>
+    <summary>a sample project toml file example:</summary>
+    <category term="githubpage" label="githubpage"/>
+    <category term="sphinx" label="sphinx"/>
+    <category term="tutorial" label="tutorial"/>
+    <published>2022-10-01T00:00:00+08:00</published>
+  </entry>
+  <entry>
+    <id>https://zeyutiann.github.io/blog/2022-10/2022-10-02-pytest-quickref.html</id>
+    <title>pytest quick reference</title>
+    <updated>2022-10-02T00:00:00+08:00</updated>
+    <author>
+      <name>TIAN Zeyu</name>
+    </author>
+    <content type="html">&lt;div class="ablog-post-excerpt docutils container"&gt;
+&lt;p&gt;simple code reference for pytest unittesting&lt;/p&gt;
+&lt;/div&gt;
+</content>
+    <link href="https://zeyutiann.github.io/blog/2022-10/2022-10-02-pytest-quickref.html" rel="alternate"/>
+    <summary>simple code reference for pytest unittesting</summary>
+    <category term="pytest" label="pytest"/>
+    <published>2022-10-02T00:00:00+08:00</published>
+  </entry>
+</feed>

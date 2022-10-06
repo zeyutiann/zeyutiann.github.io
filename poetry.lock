@@ -514,6 +514,17 @@ lint = ["docutils-stubs", "flake8", "mypy"]
 test = ["pytest"]
 
 [[package]]
+name = "sphinxnotes-isso"
+version = "1.0"
+description = "Sphinx extension for embeding Isso comments in documents"
+category = "main"
+optional = false
+python-versions = ">=3"
+
+[package.dependencies]
+Sphinx = "*"
+
+[[package]]
 name = "tornado"
 version = "6.2"
 description = "Tornado is a Python web framework and asynchronous networking library, originally developed at FriendFeed."
@@ -568,7 +579,7 @@ testing = ["func-timeout", "jaraco.itertools", "pytest (>=6)", "pytest-black (>=
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.7"
-content-hash = "fe7509735e5e81bda7265b7ef6f6e12dd0ec98aa97b14af91217ac26cae61989"
+content-hash = "3c3443e09fdcb6f8d0b552136f76c1b88893ee970d16db2ff49c8900ffdfa3d6"
 
 [metadata.files]
 ablog = [
@@ -876,6 +887,10 @@ sphinxcontrib-qthelp = [
 sphinxcontrib-serializinghtml = [
     {file = "sphinxcontrib-serializinghtml-1.1.5.tar.gz", hash = "sha256:aa5f6de5dfdf809ef505c4895e51ef5c9eac17d0f287933eb49ec495280b6952"},
     {file = "sphinxcontrib_serializinghtml-1.1.5-py2.py3-none-any.whl", hash = "sha256:352a9a00ae864471d3a7ead8d7d79f5fc0b57e8b3f95e9867eb9eb28999b92fd"},
+]
+sphinxnotes-isso = [
+    {file = "sphinxnotes-isso-1.0.tar.gz", hash = "sha256:9eb59e36b27675e093c9e1d2c6dcd27a9d5d013944cd8d90729c9d8db1f22918"},
+    {file = "sphinxnotes_isso-1.0-py3-none-any.whl", hash = "sha256:e58446f15a825626e93f9b031659adf2749613723c714dff250196848b4db0a8"},
 ]
 tornado = [
     {file = "tornado-6.2-cp37-abi3-macosx_10_9_universal2.whl", hash = "sha256:20f638fd8cc85f3cbae3c732326e96addff0a15e22d80f049e00121651e82e72"},

@@ -1,0 +1,402 @@
+---
+blogpost: true
+date: Sep 26, 2022
+tags: pep8, poetry, sphinx, git
+category: Python
+author: TIAN Zeyu
+---
+
+# Quick notes on starting a python projects
+
+all code that I referred to when I setup my first python projects. 
+
+## PEP8 on ASCII Compatibility: 
+### Package and Module Names
+
+Modules should have short, all-lowercase names. Underscores can be used in the module name if it improves readability. Python packages should also have short, all-lowercase names, although the use of underscores is discouraged.
+
+When an extension module written in C or C++ has an accompanying Python module that provides a higher level (e.g. more object oriented) interface, the C/C++ module has a leading underscore (e.g. _socket).
+### Class Names
+Class names should normally use the CapWords convention.
+
+The naming convention for functions may be used instead in cases where the interface is documented and used primarily as a callable.
+
+Note that there is a separate convention for builtin names: most builtin names are single words (or two words run together), with the CapWords convention used only for exception names and builtin constants.
+
+
+## Poetry
+use poetry to create a project with a src folder at local
+```shell
+poetry new --src my-package
+```
+Poetry assumes your package contains a package with the same name as `tool.poetry.name` located in the root of your project. If this is not the case, populate `tool.poetry.packages` to specify your packages and their locations.
+
+Similarly, the traditional `MANIFEST.in` file is replaced by the `tool.poetry.readme`, `tool.poetry.include`, and `tool.poetry.exclude` sections. `tool.poetry.exclude` is additionally implicitly populated by your `.gitignore`. For full documentation on the project format, see the pyproject section of the documentation.
+
+Poetry will require you to explicitly specify what versions of Python you intend to support, and its universal locking will guarantee that your project is installable (and all dependencies claim support for) all supported Python versions.
+
+That will create a folder structure as follows:
+```
+my-package
+├── pyproject.toml
+├── README.md
+├── src
+│   └── my_package
+│       └── __init__.py
+└── tests
+    └── __init__.py
+```
+
+
+### pyproject.toml 
+
+```
+[tool.poetry]
+name = "my-project"
+version = "0.1.0"
+description = ""
+authors = ["Sébastien Eustace <sebastien@eustace.io>"]
+maintainers = ["Sébastien Eustace <sebastien@eustace.io>","Sébastien Eustace Jr <sebastienjr@eustace.io>"]
+readme = "README.md"
+packages = [{include = "poetry_demo"}]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.7"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+```
+
+### license
+the recommended notation for the most common licenses is (alphabetical):
+- Apache-2.0
+- BSD-2-Clause
+- BSD-3-Clause
+- BSD-4-Clause
+- GPL-2.0-only
+- GPL-2.0-or-later
+- GPL-3.0-only
+- GPL-3.0-or-later
+- LGPL-2.1-only
+- LGPL-2.1-or-later
+- LGPL-3.0-only
+- LGPL-3.0-or-later
+- MIT
+Optional, but it is highly recommended to supply this.
+
+### specifying dependencies 
+```
+[tool.poetry.dependencies]
+pendulum = "^2.1"
+```
+
+```shell
+poetry add pendulum
+```
+### Virtual Environment 
+By default, Poetry creates a virtual environment in `{cache-dir}/virtualenvs`. You can change the cache-dir value by editing the Poetry configuration. Additionally, you can use the virtualenvs.in-project configuration variable to create virtual environments within your project directory.
+
+- `poetry run` 
+  - `poetry run python your_script.py`
+  - if you have command line tools such as `pytest` or `black` you can run them using `poetry run pytest`
+- `poetry shell`
+  - `exit`
+  - `deactivate`
+### managing and installing dependencies
+Poetry provides a way to organize your dependencies by groups. For instance, you might have dependencies that are only needed to test your project or to build the documentation.
+
+To declare a new dependency group, use a tool.poetry.group.<group> section where <group> is the name of your dependency group (for instance, test):
+```
+[tool.poetry.group.test]  # This part can be left out
+
+[tool.poetry.group.test.dependencies]
+pytest = "^6.0.0"
+pytest-mock = "*"
+```
+The dependencies declared in tool.poetry.dependencies are part of an implicit main group.
+
+```
+[tool.poetry.dependencies]  # main dependency group
+httpx = "*"
+pendulum = "*"
+[tool.poetry.group.test.dependencies]
+pytest = "^6.0.0"
+pytest-mock = "*"
+```
+Dependency groups, other than the implicit main group, must only contain dependencies you need in your development process. Installing them is only possible by using Poetry.
+
+To declare a set of dependencies, which add additional functionality to the project during runtime, use extras instead. Extras can be installed by the end user using pip.
+
+Any dependency declared in the dev-dependencies section will automatically be added to a dev group. So the two following notations are equivalent:
+
+```
+[tool.poetry.dev-dependencies]
+pytest = "^6.0.0"
+pytest-mock = "*"
+```
+
+```
+[tool.poetry.group.dev.dependencies]
+pytest = "^6.0.0"
+pytest-mock = "*"
+```
+
+A dependency group can be declared as optional. This makes sense when you have a group of dependencies that are only required in a particular environment or for a specific purpose.
+Optional groups can be installed in addition to the default dependencies by using the `--with` option of the install command.
+Optional group dependencies will still be resolved alongside other dependencies, so special care should be taken to ensure they are compatible with each other.
+
+```
+[tool.poetry.group.docs]
+optional = true
+
+[tool.poetry.group.docs.dependencies]
+mkdocs = "*"
+```
+
+adding a dependency to a group
+```shell
+poetry install --with docs
+poetry add pytest --group test
+# poetry add 
+poetry add requests pendulum 
+# Allow >=2.0.5, <3.0.0 versions
+poetry add pendulum@^2.0.5
+# Allow >=2.0.5, <2.1.0 versions
+poetry add pendulum@~2.0.5
+# Allow >=2.0.5 versions, without upper bound
+poetry add "pendulum>=2.0.5"
+# Allow only 2.0.5 version
+poetry add pendulum==2.0.5
+poetry add pendulum@latest
+poetry add mkdocs --group docs
+poetry remove mydocs --group docs
+
+```
+
+installing dependencies 
+```shell
+# poetry install 
+#   it lazily installs, it first checks if a poetry.lock exists, and if it already exists, it just install those. 
+#   if no lock file, it acts like poetry update, and tries to resolve dependencies in pyproject.toml, create a poetry.lock and install them
+#   it is the same as poetry update if there's no lockfile. 
+poetry install
+poetry install --without test, docs
+poetry install --with test,docs
+poetry install --only test,docs
+poetry install --only-root 
+poetry install --sync 
+poetry install --extras "mysql pgsql"
+``` 
+
+- `test, docs` are dependencies groups
+- `--only-root` install the project itself with no depdendencies, skipp the installation
+- `--sync` sync your enviornment, and ensure it matches the lock file
+- Extras are not sensitive to `--sync`
+- `--without`: The dependency groups to ignore.
+- `--with`: The optional dependency groups to include.
+- `--only`: The only dependency groups to include.
+- `--only-root`: Install only the root project, exclude all dependencies.
+- `--sync`: Synchronize the environment with the locked packages and the specified groups.
+- `--no-root`: Do not install the root package (your project).
+- `--dry-run`: Output the operations but do not execute anything (implicitly enables –verbose).
+- `--extras` (-E): Features to install (multiple values allowed).
+- `--all-extras`: Install all extra features (conflicts with –extras).
+- `--no-dev`: Do not install dev dependencies. (Deprecated, use --without dev or --only main instead)
+- `--remove-untracked`: Remove dependencies not presented in the lock file. (Deprecated, use --sync instead)
+
+updating dependencies 
+```shell
+# poetry update
+#   updates the package and then installs the updates
+#   resolve dependencies to be compatible with each other, just like lock
+#   creates or updates poetry.lock like poetry lock 
+#   installs the packages
+poetry update
+poetry update requests toml
+```
+
+poetry lock
+``` shell
+# poetry lock 
+#   it does not install packages, it just generates a poetry.lock file.
+#   creates a `poetry.lock` but does not install packages
+#   The lock command reads the pyproject.toml file from the current directory, processes it, and locks the dependencies in the poetry.lock file
+#   Processing means resolving dependencies to be compatible (with the latest version by default).   
+poetry lock 
+
+#  --no-update will prevent any updates. so it will just refresh the lock file per latest pyproject.toml, without updating dependencies.  
+poetry lock --no-update 
+```
+
+```shell
+# poetry show 
+#   it shows the installed pkgs
+poetry show
+
+# poetry check 
+poetry check 
+```
+
+The run command executes the given command inside the project’s virtualenv.
+```shell
+poetry run python -V
+```
+
+It can also execute one of the scripts defined in pyproject.toml.
+```
+[tool.poetry.scripts]
+my-script = "my_module:main"
+```
+```shell
+poetry run my-script
+```
+
+
+### Installing a pre-existing project 
+Instead of creating a new project, Poetry can be used to ‘initialise’ a pre-populated directory. To interactively create a pyproject.toml file in directory pre-existing-project
+```shell
+cd my-package 
+poetry init
+```
+
+### packaging and publishing
+```shell
+poetry build
+poetry publish 
+poetry publish -r my-repository
+```
+
+I have one project, I'd like to publish as packages targeting two Python versions. 
+``` 
+[tool.poetry.dependencies]
+python='^3.6'
+```
+```shell
+poetry add <dependency> python ^3.6
+```
+```
+[tool.poetry.dependencies]
+python='^3.6'
+cleo = {version="^0.8.1",python="^3.6"}
+pyyaml = {version="^5.4.1", python="^3.6"}
+```
+
+
+## Github
+Github create new repo with the same name. 
+
+```shell
+git init 
+git add -a
+git commit -m "first commit"
+git branch -M main 
+git remote add origin git@github.com:jacobtianzeyu/my-package.git
+git push -u origin main 
+git rm -r --cache files/or/folders/to/exclude
+git add -A
+git status 
+
+```
+standard [.gitignore](https://github.com/github/gitignore/blob/main/Python.gitignore)
+
+git commit message: 
+```shell
+[type] [optional scope]: [description]
+
+[optional body]
+
+[optional footer(s)]
+```
+
+example: 
+```shell
+test: add negative test for entering mobile number
+
+add test scenario to check if entering character as mobile number is forbidden 
+
+TST-145
+```
+
+
+- [type]: 
+  - fix: patches a bug in our codebase
+  - feat: introduces a new feature
+  - refactor: introduce a breaking 
+  - docs
+  - build
+  - chore
+  - style
+  - perf
+  - test
+
+The symbol [!] can be used with any type. It signifies a breaking change that correlates with MAJOR in semantic versioning
+
+- [scope]: this is optional
+
+- [summary]: should not be long 
+
+- [body]: optional, explain motivation of change
+
+- [footer]: jira/issue id 
+
+### How to start an 'orphan' new branch
+
+Developers often want to create empty branches. They can't create it using GUI, because SourceTree can create branch only from working copy parent or specified commit.
+To create empty branch, you have to go to terminal and execute. 
+
+--orphan creates a new branch, but it starts without any commit. After running the above command you are on a new branch "NEWBRANCH", and the first commit you create from this state will start a new history without any ancestry.
+You can then start adding files and commit them and they will live in their own branch. If you take a look at the log, you will see that it is isolated from the original log.
+
+```shell
+ 
+git checkout --orphan NEWBRANCH
+git rm -rf .
+
+add files
+
+git add .
+
+git commit -m "commit message"
+
+git push -u origin branchname
+
+
+# remove git branch
+## delete local
+git branch -d <branchname>
+## delete remote
+git push origin --delete remote_branch
+
+
+```
+ 
+## Sphinx
+
+```shell
+poetry sphinx-quickstart docs
+poetry run sphinx-build -b html docs/source/ docs/build/html
+
+
+cd docs
+poetry run make html
+
+poetry add sphinx-rtd-theme --group docs
+poetry add sphinx-autodoc-typehints --group docs
+poetry add sphinx-autobuild --group docs
+poetry add sphinxcontrib-napoleon --group docs
+
+poetry run sphinx-autobuild docs docs/build/html
+```
+
+### Reference
+- [https://peps.python.org/pep-0008/#package-and-module-names](https://peps.python.org/pep-0008/#package-and-module-names)
+- [https://python-poetry.org/docs/cli/](https://python-poetry.org/docs/cli/)
+- [https://python-poetry.org/docs/basic-usage/](https://python-poetry.org/docs/basic-usage/)
+- [https://python-poetry.org/docs/pyproject/](https://python-poetry.org/docs/pyproject/)
+- [https://tomasfarias.dev/posts/sphinx-docs-with-poetry-and-github-pages/](https://tomasfarias.dev/posts/sphinx-docs-with-poetry-and-github-pages/)
+- [https://www.sphinx-doc.org/en/master/tutorial/first-steps.html](https://www.sphinx-doc.org/en/master/tutorial/first-steps.html)
+- [https://github.com/joelparkerhenderson/git-commit-message](https://github.com/joelparkerhenderson/git-commit-message)
+- [https://reflectoring.io/meaningful-commit-messages/#:~:text=The%20commit%20message%20should%20describe,commit%20message%20can%20be%20helpful.](https://reflectoring.io/meaningful-commit-messages/#:~:text=The%20commit%20message%20should%20describe,commit%20message%20can%20be%20helpful.)

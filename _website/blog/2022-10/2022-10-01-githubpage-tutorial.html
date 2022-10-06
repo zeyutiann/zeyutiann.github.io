@@ -4,8 +4,9 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>GithubPage Sphinx Tutorial &#8212; zytiann&#39;s blog  documentation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>GithubPage Sphinx Tutorial &#8212; zeyutiann&#39;s blog  documentation</title>
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css" />
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
@@ -21,7 +22,14 @@
   
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
-  
+ 
+<link
+  rel="alternate"
+  type="application/atom+xml"
+  href="../../blog/atom.xml"
+  title="Technical Blog"
+/>
+ 
 <style type="text/css">
   ul.ablog-archive {
     list-style: none;
@@ -56,9 +64,9 @@
           
 
           <div class="body" role="main">
-             <div class="section" id="githubpage-sphinx-tutorial">
+             <section id="githubpage-sphinx-tutorial">
 <h1>GithubPage Sphinx Tutorial<a class="headerlink" href="#githubpage-sphinx-tutorial" title="Permalink to this heading">¶</a></h1>
-<div class="section" id="first-few-steps">
+<section id="first-few-steps">
 <h2>first few steps<a class="headerlink" href="#first-few-steps" title="Permalink to this heading">¶</a></h2>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># create folder</span>
 mkdir username.github.io
@@ -93,8 +101,8 @@ touch .gitignore
 sphinx-autobuild . ./_website
 </pre></div>
 </div>
-</div>
-<div class="section" id="pyproject-toml">
+</section>
+<section id="pyproject-toml">
 <h2>pyproject.toml<a class="headerlink" href="#pyproject-toml" title="Permalink to this heading">¶</a></h2>
 <p>a sample project toml file example:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>tool.poetry<span class="o">]</span>
@@ -118,66 +126,87 @@ myst-parser <span class="o">=</span> <span class="s2">&quot;^0.18.1&quot;</span>
 build-backend <span class="o">=</span> <span class="s2">&quot;poetry.core.masonry.api&quot;</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="index-html">
+</section>
+<section id="index-html">
 <h2>index.html<a class="headerlink" href="#index-html" title="Permalink to this heading">¶</a></h2>
 <p>a sample for index.html</p>
 <div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">meta</span> <span class="na">http-equiv</span><span class="o">=</span><span class="s">&quot;refresh&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;0; url=./_website/index.html&quot;</span> <span class="p">/&gt;</span>
 </pre></div>
 </div>
+</section>
+<section id="markdown-support">
+<h2>markdown support<a class="headerlink" href="#markdown-support" title="Permalink to this heading">¶</a></h2>
+<p>Install myst-parser, and add these options to your conf.py</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">extensions</span><span class="o">=</span><span class="p">[</span><span class="o">...</span><span class="p">,</span>
+<span class="s2">&quot;myst_parser&quot;</span><span class="p">,</span>
+<span class="o">...</span>
+<span class="p">]</span>
+
+<span class="n">myst_update_mathjax</span> <span class="o">=</span> <span class="kc">False</span>
+</pre></div>
 </div>
-<div class="section" id="tags-and-category">
-<h2>tags and category<a class="headerlink" href="#tags-and-category" title="Permalink to this heading">¶</a></h2>
-<dl class="simple">
-<dt>common tags and category are documented here:</dt><dd><ul class="simple">
-<li><p>tags can be anything, it’s the one word summary for the blog.</p></li>
-<li><p>categories are restricted as below.</p></li>
-</ul>
-</dd>
-</dl>
-<ul class="simple">
-<li><dl class="simple">
-<dt>tags</dt><dd><ul>
-<li><p>sphinx</p></li>
-<li><p>poetry</p></li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>category</dt><dd><ul>
-<li><p>Python</p></li>
-<li><p>Git</p></li>
-<li><p>Java</p></li>
-<li><p>Cpp</p></li>
-<li><p>Kx</p></li>
-<li><p>DesignPattern</p></li>
-<li><p>Algorithm</p></li>
-<li><p>Chores</p></li>
-</ul>
-</dd>
-</dl>
-</li>
-</ul>
+<p>sample blog header format:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>---
+blogpost: <span class="nb">true</span>
+date: Oct <span class="m">10</span>, <span class="m">2020</span>
+author: Nabil Freij
+location: World
+category: Manual
+language: English
+---
+</pre></div>
 </div>
-<div class="section" id="reference">
+<p>Notice here we do not have a “:” at the start since the markdown metadata format is different from rst.</p>
+<p>Please be aware that adding “myst-parser” will mean it will read all markdown files and try to parse them. You will need to use the following in your conf.py to prevent this:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">exclude_patterns</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;posts/*/.ipynb_checkpoints/*&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;.github/*&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;.history&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;github_submodule/*&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;LICENSE.md&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;README.md&quot;</span><span class="p">,</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p>If you want to use Markdown files with extensions other than .md, adjust the source_suffix variable. The following example configures Sphinx to parse all files with the extensions .md and .txt as Markdown:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">source_suffix</span> <span class="o">=</span> <span class="p">{</span>
+<span class="s1">&#39;.rst&#39;</span><span class="p">:</span> <span class="s1">&#39;restructuredtext&#39;</span><span class="p">,</span>
+<span class="s1">&#39;.txt&#39;</span><span class="p">:</span> <span class="s1">&#39;markdown&#39;</span><span class="p">,</span>
+<span class="s1">&#39;.md&#39;</span><span class="p">:</span> <span class="s1">&#39;markdown&#39;</span><span class="p">,</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="reference">
 <h2>reference:<a class="headerlink" href="#reference" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://documentation-style-guide-sphinx.readthedocs.io/en/latest/">https://documentation-style-guide-sphinx.readthedocs.io/en/latest/</a></p></li>
-<li></li>
+<li><p><a class="reference external" href="https://ablog.readthedocs.io/manual/markdown/">https://ablog.readthedocs.io/manual/markdown/</a></p></li>
+<li><p><a class="reference external" href="https://ablog.readthedocs.io/">https://ablog.readthedocs.io/</a></p></li>
+<li><p><a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/configuration.html#confval-html_sidebars">https://www.sphinx-doc.org/en/master/usage/configuration.html#confval-html_sidebars</a></p></li>
+<li><p><a class="reference external" href="https://sphinx.silverrainz.me/isso/">https://sphinx.silverrainz.me/isso/</a></p></li>
 </ul>
-</div>
-</div>
+</section>
+</section>
 
 <div class="section">
     
 
 <div class="section">
   <span style="float: left">
+     Previous:
+    
+    <a href="../2022-09/2022-09-26-python-project.html">
+       Quick notes on starting a python projects
+    </a>
     
   </span>
   <span>&nbsp;</span>
   <span style="float: right">
+     Next: 
+    <a href="2022-10-02-pytest-quickref.html">
+      pytest quick reference 
+    </a>
     
   </span>
 </div>
@@ -190,10 +219,22 @@ build-backend <span class="o">=</span> <span class="s2">&quot;poetry.core.masonr
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-<h1 class="logo"><a href="../../index.html">zytiann's blog</a></h1>
+<p class="logo">
+  <a href="../../index.html">
+    <img class="logo" src="../../_static/./logo/muaythai-bw.jpeg" alt="Logo"/>
+    
+  </a>
+</p>
 
 
 
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=zeyutiann&repo=zeyutiann.github.io&type=watch&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
 
 
 
@@ -229,14 +270,14 @@ build-backend <span class="o">=</span> <span class="s2">&quot;poetry.core.masonr
   >
    
   <a href="../tag/githubpage.html">githubpage</a>   
-  <a href="../tag/sphinx.html">sphinx</a>   
-  <a href="../tag/tutorial.html">tutorial</a>  
+  <a href="../tag/tutorial.html">tutorial</a>   
+  <a href="../tag/sphinx.html">sphinx</a>  
 </li>
  
 </ul>
 <h3>Navigation</h3>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../about.html">About Author</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about.html">About This Blog</a></li>
 </ul>
 
 
@@ -245,6 +286,18 @@ build-backend <span class="o">=</span> <span class="s2">&quot;poetry.core.masonr
 </h3>
 <ul>
    
+  <li>
+    <a href="2022-10-02-pytest-quickref.html"
+      >02 October - pytest quick reference</a
+    >
+  </li>
+  
+  <li>
+    <a href="../2022-09/2022-09-26-python-project.html"
+      >26 September - Quick notes on starting a python projects</a
+    >
+  </li>
+  
 </ul>
 
 <h3><a href="../tag.html">Tags</a></h3>
@@ -281,15 +334,31 @@ build-backend <span class="o">=</span> <span class="s2">&quot;poetry.core.masonr
 </style>
 <ul class="ablog-cloud">
    
-  <li class="ablog-cloud ablog-cloud-3">
+  <li class="ablog-cloud ablog-cloud-1">
+    <a href="../tag/git.html">git</a>
+  </li>
+    
+  <li class="ablog-cloud ablog-cloud-1">
     <a href="../tag/githubpage.html">githubpage</a>
   </li>
     
-  <li class="ablog-cloud ablog-cloud-3">
+  <li class="ablog-cloud ablog-cloud-1">
+    <a href="../tag/pep8.html">pep8</a>
+  </li>
+    
+  <li class="ablog-cloud ablog-cloud-1">
+    <a href="../tag/poetry.html">poetry</a>
+  </li>
+    
+  <li class="ablog-cloud ablog-cloud-1">
+    <a href="../tag/pytest.html">pytest</a>
+  </li>
+    
+  <li class="ablog-cloud ablog-cloud-5">
     <a href="../tag/sphinx.html">sphinx</a>
   </li>
     
-  <li class="ablog-cloud ablog-cloud-3">
+  <li class="ablog-cloud ablog-cloud-1">
     <a href="../tag/tutorial.html">tutorial</a>
   </li>
    
@@ -303,6 +372,10 @@ build-backend <span class="o">=</span> <span class="s2">&quot;poetry.core.masonr
   <li>
     <a href="../category/chores.html">Chores (1)</a>
   </li>
+    
+  <li>
+    <a href="../category/python.html">Python (2)</a>
+  </li>
    
 </ul>
 
@@ -312,7 +385,7 @@ build-backend <span class="o">=</span> <span class="s2">&quot;poetry.core.masonr
 <ul>
    
   <li>
-    <a href="../2022.html">2022 (1)</a>
+    <a href="../2022.html">2022 (3)</a>
   </li>
    
 </ul>

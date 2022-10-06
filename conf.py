@@ -23,7 +23,7 @@ blog_title = "Technical Blog"
 
 # Base URL for the website, required for generating feeds.
 # e.g. blog_baseurl = "http://example.com/"
-blog_baseurl = ""
+blog_baseurl = "https://zeyutiann.github.io/"
 
 # Choose to archive only post titles. Archiving only titles can speed
 # up project building.
@@ -192,15 +192,21 @@ extensions = [
     'sphinx.ext.todo',
     'sphinx.ext.githubpages',
     'sphinx.ext.autodoc',
+    'myst_parser',
     'alabaster',
     'ablog',
-]
 
+]
+myst_update_mathjax = False
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ["_templates", ablog.get_html_templates_path()]
 
 # The suffix(es) of source filenames.
-source_suffix = ".rst"
+source_suffix = {
+    '.rst': 'restructuredtext',
+    '.txt': 'markdown',
+    '.md': 'markdown',
+}
 
 # The encoding of source files.
 # source_encoding = 'utf-8-sig'
@@ -209,7 +215,7 @@ source_suffix = ".rst"
 master_doc = "index"
 
 # General information about the project.
-project = "zytiann's blog"
+project = "zeyutiann's blog"
 copyright = "2022, TIAN Zeyu"
 author = "TIAN Zeyu"
 
@@ -277,7 +283,10 @@ html_theme = 'alabaster'
 # further.  For a list of options available for each theme, see the
 # documentation.
 html_theme_options = {
-    'github_button': False,
+    'github_button': True,
+    'github_user': 'zeyutiann',
+    'github_repo': 'zeyutiann.github.io',
+    'logo':'./logo/muaythai-bw.jpeg'
 }
 
 # Add any paths that contain custom themes here, relative to this directory.
@@ -362,6 +371,6 @@ html_static_path = ["_static"]
 # html_search_scorer = 'scorer.js'
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = "zytiannsblogdoc"
+htmlhelp_basename = "zeyutiannsblogdoc"
 
 
