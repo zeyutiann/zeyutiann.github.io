@@ -195,9 +195,18 @@ extensions = [
     'myst_parser',
     'alabaster',
     'ablog',
+    'bokeh.sphinxext.bokeh_plot',
+    'jupyter_sphinx',
 
 ]
+
+# markdown links: https://myst-parser.readthedocs.io/en/v0.13.5/using/intro.html
 myst_update_mathjax = False
+
+# .py scripts are not scanned automatically! In order to include certain directories into .py scanning process
+# use following directive in sphinx conf.py file: bokeh_plot_pyfile_include_dirs = [“dir1”,”dir2”]
+bokeh_plot_pyfile_include_dirs = ["_static/python"]
+
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ["_templates", ablog.get_html_templates_path()]
 
@@ -285,7 +294,7 @@ html_theme = 'alabaster'
 html_theme_options = {
     'github_button': True,
     'github_user': 'zeyutiann',
-    'github_repo': 'zeyutiann.github.io',
+    'github_repo': 'quantmashup',
     'logo':'./logo/muaythai-bw.jpeg'
 }
 

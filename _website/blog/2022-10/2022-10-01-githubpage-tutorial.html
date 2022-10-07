@@ -9,12 +9,17 @@
     <title>GithubPage Sphinx Tutorial &#8212; zeyutiann&#39;s blog  documentation</title>
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/jupyter-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/thebelab.css" />
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/thebelab-helper.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
    
@@ -81,6 +86,15 @@ poetry add myst-parser
 poetry add sphinx-autobuild
 poetry add sphinx-autodoc-typehints
 
+<span class="c1"># adding bokeh dependencies</span>
+poetry add bokeh-plot
+poetry add Ipython
+poetry add pandas
+poetry add matplotlib
+<span class="c1"># adding sphinx_charts</span>
+poetry add sphinx_charts
+poetry add jupyter-sphinx
+
 <span class="c1"># ablog</span>
 ablog start
 ablog build
@@ -91,10 +105,15 @@ touch .nojekyll
 touch index.html
 <span class="nb">echo</span> <span class="s2">&quot;&lt;meta http-equiv=\&quot;refresh\&quot; content=\&quot;0; url=./_website/index.html\&quot; /&gt;&quot;</span> &gt; index.html
 mkdir blog
-mkdir blog/2022-10/...
+mkdir blog/2022-10/
 
 <span class="c1"># initialise your git</span>
 git init
+git add -A
+git commit -m <span class="s2">&quot;first commit&quot;</span>
+git branch -M main
+git remote add origin git@github.com:zeyutiann/zeyutiann.github.io.git
+git push -u origin main
 touch .gitignore
 
 <span class="c1"># how to render locally</span>
@@ -177,6 +196,114 @@ language: English
 </pre></div>
 </div>
 </section>
+<section id="bokeh-support">
+<h2>bokeh support<a class="headerlink" href="#bokeh-support" title="Permalink to this heading">¶</a></h2>
+<p>After installing bokeh-plot from poetry. Add below to conf.py.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">extension</span> <span class="o">=</span> <span class="o">[</span>
+    ...,
+<span class="s1">&#39;bokeh.sphinxext.bokeh_plot&#39;</span>,
+    ...
+<span class="o">]</span>
+</pre></div>
+</div>
+<p>The bokeh-plot directive can be used by either supplying</p>
+<ul class="simple">
+<li><p>a path to a source file as the argument to the directive</p></li>
+</ul>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">bokeh-plot</span><span class="p">::</span> path/to/plot.py
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>inline code as the content of the directive:</p></li>
+</ul>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">bokeh-plot</span><span class="p">::</span>
+    <span class="nc">:source-position:</span> below
+    <span class="nc">:linenos:</span>
+    <span class="nc">:process-docstring:</span>
+
+    from bokeh.plotting import figure, output_file, show
+
+    output_file(&quot;example.html&quot;)
+
+    x = [1, 2, 3, 4, 5]
+    y = [6, 7, 6, 4, 5]
+
+    p = figure(title=&quot;example&quot;, plot_width=300, plot_height=300)
+    p.line(x, y, line_width=2)
+    p.circle(x, y, size=10, fill_color=&quot;white&quot;)
+
+    show(p)
+</pre></div>
+</div>
+<p>This directive also works in conjunction with Sphinx autodoc, when used in docstrings.</p>
+<p>The bokeh-plot directive accepts the following options:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>process-docstring<span class="classifier">bool</span></dt><dd><p>Whether to display the docstring in a formatted block separate from the source.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>source-position<span class="classifier">enum(‘above’, ‘below’, ‘none’)</span></dt><dd><p>Where to locate the the block of formatted source code (if anywhere).</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>linenos<span class="classifier">bool</span></dt><dd><p>Whether to display line numbers along with the source.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="how-to-use-sphinx-charts">
+<h2>How to use Sphinx-charts<a class="headerlink" href="#how-to-use-sphinx-charts" title="Permalink to this heading">¶</a></h2>
+<p>If you don’t know how to use plot.ly you won’t get very far with sphinx_charts!
+Plots need to be saved to a JSON file, whose contents are compatible with plot.ly’s json chart schema.</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">chart</span><span class="p">::</span> charts/test.json
+
+    This is the caption of the chart
+</pre></div>
+</div>
+</section>
+<section id="jupyter-notebook">
+<h2>Jupyter Notebook<a class="headerlink" href="#jupyter-notebook" title="Permalink to this heading">¶</a></h2>
+<p>or checkout jupyter-sphinx to render plotly from jupyter notebook:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>...,
+<span class="s1">&#39;jupyter_sphinx&#39;</span>,
+...<span class="o">]</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">jupyter</span><span class="o">-</span><span class="n">execute</span><span class="p">::</span>
+
+    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;word&#39;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Another jupyter notebook tools
+- <a class="reference external" href="https://github.com/spatialaudio/nbsphinx">https://github.com/spatialaudio/nbsphinx</a></p>
+<p>And another one
+- <a class="reference external" href="https://github.com/QuantEcon/sphinxcontrib-jupyter">https://github.com/QuantEcon/sphinxcontrib-jupyter</a>
+- <a class="reference external" href="https://sphinxcontrib-jupyter.readthedocs.io/en/latest/?badge=latest">https://sphinxcontrib-jupyter.readthedocs.io/en/latest/?badge=latest</a></p>
+</section>
+<section id="how-to-use-confluence">
+<h2>How to use Confluence<a class="headerlink" href="#how-to-use-confluence" title="Permalink to this heading">¶</a></h2>
+<p>To set up, this requires Python package sphinxcontrib-confluencebuilder,similarly add it to extensions list in conf.py.
+In Confluence, retrieve the space key from Space Settings &gt; Manage space &gt; Space details and create an API token
+here &lt;<a class="reference external" href="https://id.atlassian.com/manage-profile/security/api-tokens">https://id.atlassian.com/manage-profile/security/api-tokens</a>&gt;_.
+You now have all the details to publish the Sphinx documentation on Confluence!</p>
+</section>
+<section id="how-to-use-mermaid">
+<h2>How to use Mermaid:<a class="headerlink" href="#how-to-use-mermaid" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://mermaid-js.github.io/mermaid/#/README">https://mermaid-js.github.io/mermaid/#/README</a></p></li>
+</ul>
+</section>
+<section id="how-to-copy-code-from-code-block">
+<h2>How to copy code from code block<a class="headerlink" href="#how-to-copy-code-from-code-block" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/executablebooks/sphinx-copybutton">https://github.com/executablebooks/sphinx-copybutton</a></p></li>
+</ul>
+</section>
 <section id="reference">
 <h2>reference:<a class="headerlink" href="#reference" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
@@ -185,6 +312,16 @@ language: English
 <li><p><a class="reference external" href="https://ablog.readthedocs.io/">https://ablog.readthedocs.io/</a></p></li>
 <li><p><a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/configuration.html#confval-html_sidebars">https://www.sphinx-doc.org/en/master/usage/configuration.html#confval-html_sidebars</a></p></li>
 <li><p><a class="reference external" href="https://sphinx.silverrainz.me/isso/">https://sphinx.silverrainz.me/isso/</a></p></li>
+<li><p><a class="reference external" href="https://docs.bokeh.org/en/latest/docs/reference/sphinxext.html?highlight=sphinx#module-bokeh.sphinxext.bokeh_plot">https://docs.bokeh.org/en/latest/docs/reference/sphinxext.html?highlight=sphinx#module-bokeh.sphinxext.bokeh_plot</a></p></li>
+<li><p><a class="reference external" href="https://sphinx-charts.readthedocs.io/en/latest/index.html">https://sphinx-charts.readthedocs.io/en/latest/index.html</a></p></li>
+<li><p><a class="reference external" href="https://zhuanlan.zhihu.com/p/148748125">https://zhuanlan.zhihu.com/p/148748125</a></p></li>
+<li><p><a class="reference external" href="https://jupyter-sphinx.readthedocs.io/en/latest">https://jupyter-sphinx.readthedocs.io/en/latest</a>/#</p></li>
+<li><p><a class="reference external" href="https://sphinxcontrib-confluencebuilder.readthedocs.io/en/stable/">https://sphinxcontrib-confluencebuilder.readthedocs.io/en/stable/</a></p></li>
+<li><p><a class="reference external" href="https://pythonhosted.org/sphinxcontrib-exceltable/">https://pythonhosted.org/sphinxcontrib-exceltable/</a></p></li>
+<li><p><a class="reference external" href="https://github.com/spatialaudio/nbsphinx">https://github.com/spatialaudio/nbsphinx</a></p></li>
+<li><p><a class="reference external" href="https://nbsphinx.readthedocs.io/en/0.8.9/">https://nbsphinx.readthedocs.io/en/0.8.9/</a></p></li>
+<li><p><a class="reference external" href="https://github.com/executablebooks/sphinx-tabs">https://github.com/executablebooks/sphinx-tabs</a></p></li>
+<li><p><a class="reference external" href="https://mermaid-js.github.io/mermaid/#/README">https://mermaid-js.github.io/mermaid/#/README</a></p></li>
 </ul>
 </section>
 </section>
@@ -232,7 +369,7 @@ language: English
 
 
 <p>
-<iframe src="https://ghbtns.com/github-btn.html?user=zeyutiann&repo=zeyutiann.github.io&type=watch&count=true&size=large&v=2"
+<iframe src="https://ghbtns.com/github-btn.html?user=zeyutiann&repo=quantmashup&type=watch&count=true&size=large&v=2"
   allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
 </p>
 
@@ -270,8 +407,8 @@ language: English
   >
    
   <a href="../tag/githubpage.html">githubpage</a>   
-  <a href="../tag/tutorial.html">tutorial</a>   
-  <a href="../tag/sphinx.html">sphinx</a>  
+  <a href="../tag/sphinx.html">sphinx</a>   
+  <a href="../tag/tutorial.html">tutorial</a>  
 </li>
  
 </ul>

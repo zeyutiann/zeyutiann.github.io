@@ -30,6 +30,15 @@ first few steps
     poetry add sphinx-autobuild
     poetry add sphinx-autodoc-typehints
 
+    # adding bokeh dependencies
+    poetry add bokeh-plot
+    poetry add Ipython
+    poetry add pandas
+    poetry add matplotlib
+    # adding sphinx_charts
+    poetry add sphinx_charts
+    poetry add jupyter-sphinx
+
     # ablog
     ablog start
     ablog build
@@ -40,10 +49,15 @@ first few steps
     touch index.html
     echo "<meta http-equiv=\"refresh\" content=\"0; url=./_website/index.html\" />" > index.html
     mkdir blog
-    mkdir blog/2022-10/...
+    mkdir blog/2022-10/
 
     # initialise your git
     git init
+    git add -A
+    git commit -m "first commit"
+    git branch -M main
+    git remote add origin git@github.com:zeyutiann/zeyutiann.github.io.git
+    git push -u origin main
     touch .gitignore
 
     # how to render locally
@@ -141,6 +155,118 @@ If you want to use Markdown files with extensions other than .md, adjust the sou
     '.md': 'markdown',
     }
 
+bokeh support
+==============
+
+After installing bokeh-plot from poetry. Add below to conf.py.
+
+.. code-block:: shell
+
+    extension = [
+        ...,
+    'bokeh.sphinxext.bokeh_plot',
+        ...
+    ]
+
+The bokeh-plot directive can be used by either supplying
+
+- a path to a source file as the argument to the directive
+
+.. code-block:: rst
+
+    .. bokeh-plot:: path/to/plot.py
+
+- inline code as the content of the directive:
+
+.. code-block:: rst
+
+    .. bokeh-plot::
+        :source-position: below
+        :linenos:
+        :process-docstring:
+
+        from bokeh.plotting import figure, output_file, show
+
+        output_file("example.html")
+
+        x = [1, 2, 3, 4, 5]
+        y = [6, 7, 6, 4, 5]
+
+        p = figure(title="example", plot_width=300, plot_height=300)
+        p.line(x, y, line_width=2)
+        p.circle(x, y, size=10, fill_color="white")
+
+        show(p)
+
+This directive also works in conjunction with Sphinx autodoc, when used in docstrings.
+
+The bokeh-plot directive accepts the following options:
+
+- process-docstring : bool
+    Whether to display the docstring in a formatted block separate from the source.
+
+- source-position : enum(‘above’, ‘below’, ‘none’)
+    Where to locate the the block of formatted source code (if anywhere).
+
+- linenos : bool
+    Whether to display line numbers along with the source.
+
+
+How to use Sphinx-charts
+=========================
+If you don’t know how to use plot.ly you won’t get very far with sphinx_charts!
+Plots need to be saved to a JSON file, whose contents are compatible with plot.ly’s json chart schema.
+
+.. code-block:: rst
+
+    .. chart:: charts/test.json
+
+        This is the caption of the chart
+
+
+Jupyter Notebook
+=================
+
+or checkout jupyter-sphinx to render plotly from jupyter notebook:
+
+.. code-block:: shell
+
+    [...,
+    'jupyter_sphinx',
+    ...]
+
+
+.. code-block::
+
+    .. jupyter-execute::
+
+        name='word'
+        print(name)
+
+Another jupyter notebook tools
+- https://github.com/spatialaudio/nbsphinx
+
+And another one
+- https://github.com/QuantEcon/sphinxcontrib-jupyter
+- https://sphinxcontrib-jupyter.readthedocs.io/en/latest/?badge=latest
+
+
+
+How to use Confluence
+=======================
+To set up, this requires Python package sphinxcontrib-confluencebuilder,similarly add it to extensions list in conf.py.
+In Confluence, retrieve the space key from Space Settings > Manage space > Space details and create an API token
+here <https://id.atlassian.com/manage-profile/security/api-tokens>_.
+You now have all the details to publish the Sphinx documentation on Confluence!
+
+How to use Mermaid:
+====================
+- https://mermaid-js.github.io/mermaid/#/README
+
+How to copy code from code block
+==================================
+- https://github.com/executablebooks/sphinx-copybutton
+
 reference:
 ===========
 
@@ -149,6 +275,17 @@ reference:
 - https://ablog.readthedocs.io/
 - https://www.sphinx-doc.org/en/master/usage/configuration.html#confval-html_sidebars
 - https://sphinx.silverrainz.me/isso/
+- https://docs.bokeh.org/en/latest/docs/reference/sphinxext.html?highlight=sphinx#module-bokeh.sphinxext.bokeh_plot
+- https://sphinx-charts.readthedocs.io/en/latest/index.html
+- https://zhuanlan.zhihu.com/p/148748125
+- https://jupyter-sphinx.readthedocs.io/en/latest/#
+- https://sphinxcontrib-confluencebuilder.readthedocs.io/en/stable/
+- https://pythonhosted.org/sphinxcontrib-exceltable/
+- https://github.com/spatialaudio/nbsphinx
+- https://nbsphinx.readthedocs.io/en/0.8.9/
+- https://github.com/executablebooks/sphinx-tabs
+- https://mermaid-js.github.io/mermaid/#/README
+
 
 
 
