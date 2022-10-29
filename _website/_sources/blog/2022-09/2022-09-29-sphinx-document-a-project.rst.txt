@@ -3,8 +3,8 @@
    :category: Documentation
    :author: TIAN Zeyu
 
-Sphinx
-##############
+Sphinx and it's related tutorial
+#################################
 
 .. code-block::
 

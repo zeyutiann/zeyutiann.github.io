@@ -3,7 +3,7 @@
 
 .. post:: 2022.09.30
    :tags: githubpage, sphinx, tutorial
-   :category: Chores
+   :category: Documentation
    :author: TIAN Zeyu
 
 
@@ -250,6 +250,30 @@ And another one
 - https://github.com/QuantEcon/sphinxcontrib-jupyter
 - https://sphinxcontrib-jupyter.readthedocs.io/en/latest/?badge=latest
 
+How to use Ablog
+==================
+
+postlist
+---------
+.. code-block::
+
+    .. postlist:: 5
+
+       :author: Ahmet
+       :category: Manual
+       :location: Pittsburgh
+       :language: en
+       :tags: tips
+       :date: %A, %B %d, %Y
+       :format: {title} by {author} on {date}
+       :list-style: circle
+       :excerpts:
+       :sort:
+       :expand: Read more ...
+
+* list-style: circle, disc, and none (default) are recognized.
+
+- https://ablog.readthedocs.io/manual/posting-and-listing/
 
 
 How to use Confluence

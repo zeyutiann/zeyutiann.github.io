@@ -6,11 +6,20 @@
 Welcome to my technical blog.
 ========================================
 
-
 recent posts:
 
 .. postlist:: 10
-   :excerpts:
+   :date: %Y-%m-%d
+   :list-style: disc
+   :sort:
+
+quick reference on documentations
+
+.. postlist:: 10
+   :date: %Y-%m-%d
+   :list-style: disc
+   :sort:
+   :category: Documentation
 
 
 .. `toctree` directive, below, contains list of non-post `.rst` files.

@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://zeyutiann.github.io/</id>
   <title>Technical Blog</title>
-  <updated>2022-10-29T09:19:00.131920+00:00</updated>
+  <updated>2022-10-29T09:44:37.512914+00:00</updated>
   <link href="https://zeyutiann.github.io/"/>
   <link href="https://zeyutiann.github.io/blog/atom.xml" rel="self"/>
   <generator uri="https://ablog.readthedocs.org/" version="0.10.29">ABlog</generator>
@@ -58,7 +58,7 @@
   </entry>
   <entry>
     <id>https://zeyutiann.github.io/blog/2022-09/2022-09-29-sphinx-document-a-project.html</id>
-    <title>Sphinx</title>
+    <title>Sphinx and it’s related tutorial</title>
     <updated>2022-09-29T00:00:00+08:00</updated>
     <author>
       <name>TIAN Zeyu</name>
