@@ -1,7 +1,7 @@
 ---
 blogpost: true
 date: Sep 26, 2022
-tags: pep8, poetry, sphinx, git
+tags: pep8, poetry, sphinx
 category: Python
 author: TIAN Zeyu
 ---
@@ -285,111 +285,6 @@ pyyaml = {version="^5.4.1", python="^3.6"}
 ```
 
 
-## Github
-Github create new repo with the same name. 
-
-```shell
-git init 
-git add -a
-git commit -m "first commit"
-git branch -M main 
-git remote add origin git@github.com:jacobtianzeyu/my-package.git
-git push -u origin main 
-git rm -r --cache files/or/folders/to/exclude
-git add -A
-git status 
-
-```
-standard [.gitignore](https://github.com/github/gitignore/blob/main/Python.gitignore)
-
-git commit message: 
-```shell
-[type] [optional scope]: [description]
-
-[optional body]
-
-[optional footer(s)]
-```
-
-example: 
-```shell
-test: add negative test for entering mobile number
-
-add test scenario to check if entering character as mobile number is forbidden 
-
-TST-145
-```
-
-
-- [type]: 
-  - fix: patches a bug in our codebase
-  - feat: introduces a new feature
-  - refactor: introduce a breaking 
-  - docs
-  - build
-  - chore
-  - style
-  - perf
-  - test
-
-The symbol [!] can be used with any type. It signifies a breaking change that correlates with MAJOR in semantic versioning
-
-- [scope]: this is optional
-
-- [summary]: should not be long 
-
-- [body]: optional, explain motivation of change
-
-- [footer]: jira/issue id 
-
-### How to start an 'orphan' new branch
-
-Developers often want to create empty branches. They can't create it using GUI, because SourceTree can create branch only from working copy parent or specified commit.
-To create empty branch, you have to go to terminal and execute. 
-
---orphan creates a new branch, but it starts without any commit. After running the above command you are on a new branch "NEWBRANCH", and the first commit you create from this state will start a new history without any ancestry.
-You can then start adding files and commit them and they will live in their own branch. If you take a look at the log, you will see that it is isolated from the original log.
-
-```shell
- 
-git checkout --orphan NEWBRANCH
-git rm -rf .
-
-add files
-
-git add .
-
-git commit -m "commit message"
-
-git push -u origin branchname
-
-
-# remove git branch
-## delete local
-git branch -d <branchname>
-## delete remote
-git push origin --delete remote_branch
-
-
-```
- 
-## Sphinx
-
-```shell
-poetry sphinx-quickstart docs
-poetry run sphinx-build -b html docs/source/ docs/build/html
-
-
-cd docs
-poetry run make html
-
-poetry add sphinx-rtd-theme --group docs
-poetry add sphinx-autodoc-typehints --group docs
-poetry add sphinx-autobuild --group docs
-poetry add sphinxcontrib-napoleon --group docs
-
-poetry run sphinx-autobuild docs docs/build/html
-```
 
 ### Reference
 - [https://peps.python.org/pep-0008/#package-and-module-names](https://peps.python.org/pep-0008/#package-and-module-names)
@@ -397,6 +292,3 @@ poetry run sphinx-autobuild docs docs/build/html
 - [https://python-poetry.org/docs/basic-usage/](https://python-poetry.org/docs/basic-usage/)
 - [https://python-poetry.org/docs/pyproject/](https://python-poetry.org/docs/pyproject/)
 - [https://tomasfarias.dev/posts/sphinx-docs-with-poetry-and-github-pages/](https://tomasfarias.dev/posts/sphinx-docs-with-poetry-and-github-pages/)
-- [https://www.sphinx-doc.org/en/master/tutorial/first-steps.html](https://www.sphinx-doc.org/en/master/tutorial/first-steps.html)
-- [https://github.com/joelparkerhenderson/git-commit-message](https://github.com/joelparkerhenderson/git-commit-message)
-- [https://reflectoring.io/meaningful-commit-messages/#:~:text=The%20commit%20message%20should%20describe,commit%20message%20can%20be%20helpful.](https://reflectoring.io/meaningful-commit-messages/#:~:text=The%20commit%20message%20should%20describe,commit%20message%20can%20be%20helpful.)

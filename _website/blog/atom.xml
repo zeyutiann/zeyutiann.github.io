@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://zeyutiann.github.io/</id>
   <title>Technical Blog</title>
-  <updated>2022-10-07T18:54:41.677359+00:00</updated>
+  <updated>2022-10-29T09:19:00.131920+00:00</updated>
   <link href="https://zeyutiann.github.io/"/>
   <link href="https://zeyutiann.github.io/blog/atom.xml" rel="self"/>
   <generator uri="https://ablog.readthedocs.org/" version="0.10.29">ABlog</generator>
@@ -19,16 +19,63 @@
 </content>
     <link href="https://zeyutiann.github.io/blog/2022-09/2022-09-26-python-project.html" rel="alternate"/>
     <summary>all code that I referred to when I setup my first python projects.</summary>
-    <category term="git" label="git"/>
     <category term="pep8" label="pep8"/>
     <category term="poetry" label="poetry"/>
     <category term="sphinx" label="sphinx"/>
     <published>2022-09-26T00:00:00+08:00</published>
   </entry>
   <entry>
-    <id>https://zeyutiann.github.io/blog/2022-10/2022-10-01-githubpage-tutorial.html</id>
+    <id>https://zeyutiann.github.io/blog/2022-09/2022-09-27-md-cheatsheet.html</id>
+    <title>MarkDown Common Reference</title>
+    <updated>2022-09-27T00:00:00+08:00</updated>
+    <author>
+      <name>TIAN Zeyu</name>
+    </author>
+    <content type="html">&lt;div class="ablog-post-excerpt docutils container"&gt;
+&lt;p&gt;Here’s our logo (hover to see the title text):&lt;/p&gt;
+&lt;/div&gt;
+</content>
+    <link href="https://zeyutiann.github.io/blog/2022-09/2022-09-27-md-cheatsheet.html" rel="alternate"/>
+    <summary>Here’s our logo (hover to see the title text):</summary>
+    <category term="markdown" label="markdown"/>
+    <published>2022-09-27T00:00:00+08:00</published>
+  </entry>
+  <entry>
+    <id>https://zeyutiann.github.io/blog/2022-09/2022-09-28-git-cheatsheet.html</id>
+    <title>Git Cheatsheet</title>
+    <updated>2022-09-28T00:00:00+08:00</updated>
+    <author>
+      <name>TIAN Zeyu</name>
+    </author>
+    <content type="html">&lt;div class="ablog-post-excerpt docutils container"&gt;
+&lt;p&gt;Github create new repo with the same name.&lt;/p&gt;
+&lt;/div&gt;
+</content>
+    <link href="https://zeyutiann.github.io/blog/2022-09/2022-09-28-git-cheatsheet.html" rel="alternate"/>
+    <summary>Github create new repo with the same name.</summary>
+    <category term="git" label="git"/>
+    <published>2022-09-28T00:00:00+08:00</published>
+  </entry>
+  <entry>
+    <id>https://zeyutiann.github.io/blog/2022-09/2022-09-29-sphinx-document-a-project.html</id>
+    <title>Sphinx</title>
+    <updated>2022-09-29T00:00:00+08:00</updated>
+    <author>
+      <name>TIAN Zeyu</name>
+    </author>
+    <content type="html">&lt;div class="ablog-post-excerpt docutils container"&gt;
+&lt;p&gt;autodoc&lt;/p&gt;
+&lt;/div&gt;
+</content>
+    <link href="https://zeyutiann.github.io/blog/2022-09/2022-09-29-sphinx-document-a-project.html" rel="alternate"/>
+    <summary>autodoc</summary>
+    <category term="sphinx" label="sphinx"/>
+    <published>2022-09-29T00:00:00+08:00</published>
+  </entry>
+  <entry>
+    <id>https://zeyutiann.github.io/blog/2022-09/2022-09-30-githubpage-tutorial.html</id>
     <title>GithubPage Sphinx Tutorial</title>
-    <updated>2022-10-01T00:00:00+08:00</updated>
+    <updated>2022-09-30T00:00:00+08:00</updated>
     <author>
       <name>TIAN Zeyu</name>
     </author>
@@ -36,12 +83,12 @@
 &lt;p&gt;a sample project toml file example:&lt;/p&gt;
 &lt;/div&gt;
 </content>
-    <link href="https://zeyutiann.github.io/blog/2022-10/2022-10-01-githubpage-tutorial.html" rel="alternate"/>
+    <link href="https://zeyutiann.github.io/blog/2022-09/2022-09-30-githubpage-tutorial.html" rel="alternate"/>
     <summary>a sample project toml file example:</summary>
     <category term="githubpage" label="githubpage"/>
     <category term="sphinx" label="sphinx"/>
     <category term="tutorial" label="tutorial"/>
-    <published>2022-10-01T00:00:00+08:00</published>
+    <published>2022-09-30T00:00:00+08:00</published>
   </entry>
   <entry>
     <id>https://zeyutiann.github.io/blog/2022-10/2022-10-02-pytest-quickref.html</id>
@@ -58,5 +105,83 @@
     <summary>simple code reference for pytest unittesting</summary>
     <category term="pytest" label="pytest"/>
     <published>2022-10-02T00:00:00+08:00</published>
+  </entry>
+  <entry>
+    <id>https://zeyutiann.github.io/blog/2022-10/2022-10-23-recursive-functions.html</id>
+    <title>Recursive Function</title>
+    <updated>2022-10-23T00:00:00+08:00</updated>
+    <author>
+      <name>TIAN Zeyu</name>
+    </author>
+    <content type="html">&lt;div class="ablog-post-excerpt docutils container"&gt;
+&lt;/div&gt;
+</content>
+    <link href="https://zeyutiann.github.io/blog/2022-10/2022-10-23-recursive-functions.html" rel="alternate"/>
+    <category term="RecursiveFunction" label="Recursive Function"/>
+    <published>2022-10-23T00:00:00+08:00</published>
+  </entry>
+  <entry>
+    <id>https://zeyutiann.github.io/blog/2022-10/2022-10-24-design-pattern-mvc-mvp-mvvm.html</id>
+    <title>MVC, MVP and MVVM</title>
+    <updated>2022-10-24T00:00:00+08:00</updated>
+    <author>
+      <name>TIAN Zeyu</name>
+    </author>
+    <content type="html">&lt;div class="ablog-post-excerpt docutils container"&gt;
+&lt;p&gt;this is&lt;/p&gt;
+&lt;/div&gt;
+</content>
+    <link href="https://zeyutiann.github.io/blog/2022-10/2022-10-24-design-pattern-mvc-mvp-mvvm.html" rel="alternate"/>
+    <summary>this is</summary>
+    <category term="MVC" label="MVC"/>
+    <category term="MVP" label="MVP"/>
+    <category term="MVVM" label="MVVM"/>
+    <published>2022-10-24T00:00:00+08:00</published>
+  </entry>
+  <entry>
+    <id>https://zeyutiann.github.io/blog/2022-10/2022-10-25-design-pattern-builder.html</id>
+    <title>Builder Pattern</title>
+    <updated>2022-10-25T00:00:00+08:00</updated>
+    <author>
+      <name>TIAN Zeyu</name>
+    </author>
+    <content type="html">&lt;div class="ablog-post-excerpt docutils container"&gt;
+&lt;/div&gt;
+</content>
+    <link href="https://zeyutiann.github.io/blog/2022-10/2022-10-25-design-pattern-builder.html" rel="alternate"/>
+    <category term="Builder" label="Builder"/>
+    <published>2022-10-25T00:00:00+08:00</published>
+  </entry>
+  <entry>
+    <id>https://zeyutiann.github.io/blog/2022-10/2022-10-26-design-pattern-observer.html</id>
+    <title>Observer Pattern</title>
+    <updated>2022-10-26T00:00:00+08:00</updated>
+    <author>
+      <name>TIAN Zeyu</name>
+    </author>
+    <content type="html">&lt;div class="ablog-post-excerpt docutils container"&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://www.geeksforgeeks.org/observer-method-python-design-patterns/"&gt;https://www.geeksforgeeks.org/observer-method-python-design-patterns/&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+</content>
+    <link href="https://zeyutiann.github.io/blog/2022-10/2022-10-26-design-pattern-observer.html" rel="alternate"/>
+    <summary>https://www.geeksforgeeks.org/observer-method-python-design-patterns/</summary>
+    <category term="Observer" label="Observer"/>
+    <published>2022-10-26T00:00:00+08:00</published>
+  </entry>
+  <entry>
+    <id>https://zeyutiann.github.io/blog/2022-10/2022-10-27-design-pattern-composite.html</id>
+    <title>Composite Design Pattern</title>
+    <updated>2022-10-27T00:00:00+08:00</updated>
+    <author>
+      <name>TIAN Zeyu</name>
+    </author>
+    <content type="html">&lt;div class="ablog-post-excerpt docutils container"&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://levelup.gitconnected.com/what-is-composite-and-builder-design-pattern-8b2b60783e0"&gt;https://levelup.gitconnected.com/what-is-composite-and-builder-design-pattern-8b2b60783e0&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+</content>
+    <link href="https://zeyutiann.github.io/blog/2022-10/2022-10-27-design-pattern-composite.html" rel="alternate"/>
+    <summary>https://levelup.gitconnected.com/what-is-composite-and-builder-design-pattern-8b2b60783e0</summary>
+    <category term="Composite" label="Composite"/>
+    <published>2022-10-27T00:00:00+08:00</published>
   </entry>
 </feed>

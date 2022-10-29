@@ -1,0 +1,48 @@
+.. post:: 2022.09.29
+   :tags: sphinx
+   :category: Documentation
+   :author: TIAN Zeyu
+
+Sphinx
+##############
+
+.. code-block::
+
+    poetry sphinx-quickstart docs
+    poetry run sphinx-build -b html docs/source/ docs/build/html
+
+
+    cd docs
+    poetry run make html
+
+    poetry add sphinx-rtd-theme --group docs
+    poetry add sphinx-autodoc-typehints --group docs
+    poetry add sphinx-autobuild --group docs
+    poetry add sphinxcontrib-napoleon --group docs
+
+    poetry run sphinx-autobuild docs docs/build/html
+
+how to document a class
+========================
+autodoc
+
+autodoc reference
+https://stackoverflow.com/questions/7753805/sphinx-automodule-how-to-reference-classes-in-same-module
+
+Jupyter Notebook
+=================
+Because all code cells in a document are run in the same kernel, cells later in the document can use variables and functions defined in cells earlier in the document
+
+.. jupyter-execute::
+
+  name = 'world'
+  print('hello ' + name + '!')
+
+- https://jupyter-sphinx.readthedocs.io/en/latest/
+
+Reference
+==========
+- https://www.sphinx-doc.org/en/master/tutorial/first-steps.html
+
+
+

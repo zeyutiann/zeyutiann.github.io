@@ -1,0 +1,597 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Git Cheatsheet &#8212; zeyutiann&#39;s blog  documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/jupyter-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/thebelab.css" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/thebelab-helper.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+ 
+<link
+  rel="alternate"
+  type="application/atom+xml"
+  href="../../blog/atom.xml"
+  title="Technical Blog"
+/>
+ 
+<style type="text/css">
+  ul.ablog-archive {
+    list-style: none;
+    overflow: auto;
+    margin-left: 0px;
+  }
+  ul.ablog-archive li {
+    float: left;
+    margin-right: 5px;
+    font-size: 80%;
+  }
+  ul.postlist a {
+    font-style: italic;
+  }
+  ul.postlist-style-disc {
+    list-style-type: disc;
+  }
+  ul.postlist-style-none {
+    list-style-type: none;
+  }
+  ul.postlist-style-circle {
+    list-style-type: circle;
+  }
+</style>
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+             <section id="git-cheatsheet">
+<h1>Git Cheatsheet<a class="headerlink" href="#git-cheatsheet" title="Permalink to this heading">¶</a></h1>
+<section id="github">
+<h2>Github<a class="headerlink" href="#github" title="Permalink to this heading">¶</a></h2>
+<p>Github create new repo with the same name.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git init 
+git add -a
+git commit -m <span class="s2">&quot;first commit&quot;</span>
+git branch -M main 
+git remote add origin git@github.com:jacobtianzeyu/my-package.git
+git push -u origin main 
+git rm -r --cache files/or/folders/to/exclude
+git add -A
+git status 
+</pre></div>
+</div>
+<p>standard <a class="reference external" href="https://github.com/github/gitignore/blob/main/Python.gitignore">.gitignore</a></p>
+<p>git commit message:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>type<span class="o">]</span> <span class="o">[</span>optional scope<span class="o">]</span>: <span class="o">[</span>description<span class="o">]</span>
+
+<span class="o">[</span>optional body<span class="o">]</span>
+
+<span class="o">[</span>optional footer<span class="o">(</span>s<span class="o">)]</span>
+</pre></div>
+</div>
+<p>example:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>test: add negative <span class="nb">test</span> <span class="k">for</span> entering mobile number
+
+add <span class="nb">test</span> scenario to check <span class="k">if</span> entering character as mobile number is forbidden 
+
+TST-145
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>[type]:</p>
+<ul>
+<li><p>fix: patches a bug in our codebase</p></li>
+<li><p>feat: introduces a new feature</p></li>
+<li><p>refactor: introduce a breaking</p></li>
+<li><p>docs</p></li>
+<li><p>build</p></li>
+<li><p>chore</p></li>
+<li><p>style</p></li>
+<li><p>perf</p></li>
+<li><p>test</p></li>
+</ul>
+</li>
+</ul>
+<p>The symbol [!] can be used with any type. It signifies a breaking change that correlates with MAJOR in semantic versioning</p>
+<ul class="simple">
+<li><p>[scope]: this is optional</p></li>
+<li><p>[summary]: should not be long</p></li>
+<li><p>[body]: optional, explain motivation of change</p></li>
+<li><p>[footer]: jira/issue id</p></li>
+</ul>
+<section id="how-to-start-an-orphan-new-branch">
+<h3>How to start an ‘orphan’ new branch<a class="headerlink" href="#how-to-start-an-orphan-new-branch" title="Permalink to this heading">¶</a></h3>
+<p>Developers often want to create empty branches. They can’t create it using GUI, because SourceTree can create branch only from working copy parent or specified commit.
+To create empty branch, you have to go to terminal and execute.</p>
+<p>–orphan creates a new branch, but it starts without any commit. After running the above command you are on a new branch “NEWBRANCH”, and the first commit you create from this state will start a new history without any ancestry.
+You can then start adding files and commit them and they will live in their own branch. If you take a look at the log, you will see that it is isolated from the original log.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span> 
+git checkout --orphan NEWBRANCH
+git rm -rf .
+
+add files
+
+git add .
+
+git commit -m <span class="s2">&quot;commit message&quot;</span>
+
+git push -u origin branchname
+
+
+<span class="c1"># remove git branch</span>
+<span class="c1">## delete local</span>
+git branch -d &lt;branchname&gt;
+<span class="c1">## delete remote</span>
+git push origin --delete remote_branch
+</pre></div>
+</div>
+</section>
+</section>
+<section id="best-practise-for-git-project">
+<h2>Best Practise for git project<a class="headerlink" href="#best-practise-for-git-project" title="Permalink to this heading">¶</a></h2>
+<p>For collaboration projects, there are usually 2 branches.</p>
+<p>main branch</p>
+<ul class="simple">
+<li><p>main branch - production branch, runnable</p></li>
+<li><p>develop branch</p></li>
+</ul>
+<p>supporting branch</p>
+<ul class="simple">
+<li><p>hotfixes - staging (limited lifetime)</p></li>
+<li><p>release branches (limited lifetime)</p></li>
+<li><p>feature branches (limited lifetime)</p></li>
+</ul>
+<p><img alt="git-branches" src="../../_images/git-branches.png" /></p>
+<p>The thought process here is that you spend most of your time in development. When in development, you create a feature branch (off of development), complete the feature, and then merge back into development. This can then be added to the final production version by merging into production.</p>
+<p>At the core, the development model is greatly inspired by existing models out there. The central repo holds two main branches with an infinite lifetime:</p>
+<ul class="simple">
+<li><p>main</p></li>
+<li><p>develop</p></li>
+</ul>
+<p>The master branch at origin should be familiar to every Git user. Parallel to the master branch, another branch exists called develop.</p>
+<p>We consider origin/master to be the main branch where the source code of HEAD always reflects a production-ready state.</p>
+<p>We consider origin/develop to be the main branch where the source code of HEAD always reflects a state with the latest delivered development changes for the next release. Some would call this the “integration branch”. This is where any automatic nightly builds are built from.</p>
+<p>When the source code in the develop branch reaches a stable point and is ready to be released, all of the changes should be merged back into master somehow and then tagged with a release number. How this is done in detail will be discussed further on.</p>
+<p>Therefore, each time when changes are merged back into master, this is a new production release by definition. We tend to be very strict at this, so that theoretically, we could use a Git hook script to automatically build and roll-out our software to our production servers everytime there was a commit on master.</p>
+<p>Our development model uses a variety of supporting branches to aid parallel development between team members, ease tracking of features, prepare for production releases and to assist in quickly fixing live production problems. Unlike the main branches, these branches always have a limited life time, since they will be removed eventually.</p>
+<p>The different types of branches we may use are:</p>
+<ul class="simple">
+<li><p>Feature branches: may branch off from <code class="docutils literal notranslate"><span class="pre">develop</span></code>, must merge back into <code class="docutils literal notranslate"><span class="pre">develop</span></code>, naming convention: anything except <code class="docutils literal notranslate"><span class="pre">master</span></code>, <code class="docutils literal notranslate"><span class="pre">develop</span></code>, <code class="docutils literal notranslate"><span class="pre">release-*</span></code>, or <code class="docutils literal notranslate"><span class="pre">hotfix-*</span></code></p></li>
+<li><p>Release branches: May branch off from <code class="docutils literal notranslate"><span class="pre">develop</span></code>, must merge back into <code class="docutils literal notranslate"><span class="pre">develop</span></code> and <code class="docutils literal notranslate"><span class="pre">master</span></code>, branch naming convention <code class="docutils literal notranslate"><span class="pre">release-*</span></code></p></li>
+<li><p>Hotfix branches: May branch off from  <code class="docutils literal notranslate"><span class="pre">master</span></code>, must merge back into <code class="docutils literal notranslate"><span class="pre">develop</span></code> and <code class="docutils literal notranslate"><span class="pre">master</span></code>, branch naming convention <code class="docutils literal notranslate"><span class="pre">hotfix-*</span></code></p></li>
+</ul>
+<p>Each of these branches have a specific purpose and are bound to strict rules as to which branches may be their originating branch and which branches must be their merge targets.</p>
+<p><strong>Feature branches</strong> (or sometimes called topic branches) are used to develop new features for the upcoming or a distant future release. When starting development of a feature, the target release in which this feature will be incorporated may well be unknown at that point. The essence of a feature branch is that it exists as long as the feature is in development, but will eventually be merged back into develop (to definitely add the new feature to the upcoming release) or discarded (in case of a disappointing experiment). Feature branches typically exist in developer repos only, not in origin</p>
+<p><strong>Release branches</strong> support preparation of a new production release. They allow for last-minute dotting of i’s and crossing t’s. Furthermore, they allow for minor bug fixes and preparing meta-data for a release (version number, build dates, etc.). By doing all of this work on a release branch, the develop branch is cleared to receive features for the next big release. The key moment to branch off a new release branch from develop is when develop (almost) reflects the desired state of the new release. At least all features that are targeted for the release-to-be-built must be merged in to develop at this point in time. All features targeted at future releases may not—they must wait until after the release branch is branched off.
+It is exactly at the start of a release branch that the upcoming release gets assigned a version number—not any earlier. Up until that moment, the develop branch reflected changes for the “next release”, but it is unclear whether that “next release” will eventually become 0.3 or 1.0, until the release branch is started. That decision is made on the start of the release branch and is carried out by the project’s rules on version number bumping.
+<strong>Release branches are created from the develop branch.</strong> bug fixes may be applied in this branch (rather than on the develop branch). Adding large new features here is strictly prohibited. They must be merged into develop, and therefore, wait for the next big release.</p>
+<p><strong>Hotfix branches</strong> are very much like release branches in that they are also meant to prepare for a new production release, albeit unplanned. They arise from the necessity to act immediately upon an undesired state of a live production version. When a critical bug in a production version must be resolved immediately, a hotfix branch may be branched off from the corresponding tag on the master branch that marks the production version.
+The essence is that work of team members (on the develop branch) can continue, while another person is preparing a quick production fix.</p>
+<section id="feature-branch">
+<h3>feature branch<a class="headerlink" href="#feature-branch" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1">#Switched to a new branch &quot;myfeature&quot;</span>
+$ git checkout -b myfeature develop
+
+<span class="c1">#Incorporating a finished feature on develop </span>
+<span class="c1">#Switched to branch &#39;develop&#39;</span>
+$ git checkout develop
+<span class="c1">#Updating ea1b82a..05e9557</span>
+<span class="c1">#(Summary of changes)</span>
+$ git merge --no-ff myfeature
+<span class="c1"># Deleted branch myfeature (was 05e9557).</span>
+$ git branch -d myfeature
+$ git push origin develop
+</pre></div>
+</div>
+<p>The –no-ff flag causes the merge to always create a new commit object, even if the merge could be performed with a fast-forward. This avoids losing information about the historical existence of a feature branch and groups together all commits that together added the feature.</p>
+<p><img alt="git merge --no-ff" src="../../_images/git-merge-no-ff.png" /></p>
+<p>In the latter case, it is impossible to see from the Git history which of the commit objects together have implemented a feature—you would have to manually read all the log messages. Reverting a whole feature (i.e. a group of commits), is a true headache in the latter situation, whereas it is easily done if the –no-ff flag was used.</p>
+</section>
+<section id="release-branch">
+<h3>release branch<a class="headerlink" href="#release-branch" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ git checkout -b release-1.2 develop
+<span class="c1">#Switched to a new branch &quot;release-1.2&quot;</span>
+$ ./bump-version.sh <span class="m">1</span>.2
+<span class="c1">#Files modified successfully, version bumped to 1.2.</span>
+$ git commit -a -m <span class="s2">&quot;Bumped version number to 1.2&quot;</span>
+<span class="c1">#[release-1.2 74d9424] Bumped version number to 1.2</span>
+<span class="c1">#1 files changed, 1 insertions(+), 1 deletions(-)</span>
+
+<span class="c1"># Finishing a release branch</span>
+$ git checkout master
+<span class="c1">#Switched to branch &#39;master&#39;</span>
+$ git merge --no-ff release-1.2
+<span class="c1">#Merge made by recursive.</span>
+<span class="c1">#(Summary of changes)</span>
+$ git tag -a <span class="m">1</span>.2
+
+<span class="c1"># To keep the changes made in the release branch, we need to merge those back into develop, though</span>
+$ git checkout develop
+<span class="c1"># Switched to branch &#39;develop&#39;</span>
+$ git merge --no-ff release-1.2
+<span class="c1"># Merge made by recursive.</span>
+<span class="c1"># (Summary of changes)</span>
+<span class="c1"># Now we are really done and the release branch may be removed, since we don’t need it anymore</span>
+$ git branch -d release-1.2
+<span class="c1"># Deleted branch release-1.2 (was ff452fe).</span>
+</pre></div>
+</div>
+</section>
+<section id="hotfix-branch">
+<h3>hotfix branch<a class="headerlink" href="#hotfix-branch" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ git checkout -b hotfix-1.2.1 master
+<span class="c1"># Switched to a new branch &quot;hotfix-1.2.1&quot;</span>
+$ ./bump-version.sh <span class="m">1</span>.2.1
+<span class="c1"># Files modified successfully, version bumped to 1.2.1.</span>
+$ git commit -a -m <span class="s2">&quot;Bumped version number to 1.2.1&quot;</span>
+<span class="c1"># [hotfix-1.2.1 41e61bb] Bumped version number to 1.2.1</span>
+<span class="c1"># 1 files changed, 1 insertions(+), 1 deletions(-)</span>
+$ git commit -m <span class="s2">&quot;Fixed severe production problem&quot;</span>
+<span class="c1"># [hotfix-1.2.1 abbe5d6] Fixed severe production problem</span>
+<span class="c1"># 5 files changed, 32 insertions(+), 17 deletions(-)</span>
+
+<span class="c1"># First, update master and tag the release.</span>
+$ git checkout master
+<span class="c1"># Switched to branch &#39;master&#39;</span>
+$ git merge --no-ff hotfix-1.2.1
+<span class="c1"># Merge made by recursive.</span>
+<span class="c1"># (Summary of changes)</span>
+$ git tag -a <span class="m">1</span>.2.1
+
+<span class="c1"># Next, include the bugfix in develop, too:</span>
+$ git checkout develop
+<span class="c1"># Switched to branch &#39;develop&#39;</span>
+$ git merge --no-ff hotfix-1.2.1
+<span class="c1"># Merge made by recursive.</span>
+<span class="c1"># (Summary of changes)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="what-is-pull-request">
+<h2>what is pull request<a class="headerlink" href="#what-is-pull-request" title="Permalink to this heading">¶</a></h2>
+<p>A pull request is an event in Git where a contributor asks a maintainer of a Git repository to review code they want to merge into a project.</p>
+<p>if you want to contribute to a project, the simplest way is to:</p>
+<ul class="simple">
+<li><p>Find a project you want to contribute to</p></li>
+<li><p>Fork it</p></li>
+<li><p>Clone it to your local system</p></li>
+<li><p>Make a new branch</p></li>
+<li><p>Make your changes</p></li>
+<li><p>Push it back to your repo</p></li>
+<li><p>Click the Compare &amp; pull request button</p></li>
+<li><p>Click Create pull request to open a new pull request</p></li>
+</ul>
+</section>
+<section id="changelog">
+<h2>Changelog<a class="headerlink" href="#changelog" title="Permalink to this heading">¶</a></h2>
+<p>A changelog is a file that shares a chronologically ordered list of the changes you’ve made on your project. It’s often organized by the version with the date followed by a list of added, improved, and removed features.</p>
+</section>
+<section id="reference">
+<h2>Reference<a class="headerlink" href="#reference" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://nvie.com/posts/a-successful-git-branching-model/">https://nvie.com/posts/a-successful-git-branching-model/</a></p></li>
+<li><p><a class="reference external" href="https://github.com/joelparkerhenderson/git-commit-message">https://github.com/joelparkerhenderson/git-commit-message</a></p></li>
+<li><p><a class="reference external" href="https://reflectoring.io/meaningful-commit-messages/#:~:text=The%20commit%20message%20should%20describe,commit%20message%20can%20be%20helpful.">https://reflectoring.io/meaningful-commit-messages/#:~:text=The%20commit%20message%20should%20describe,commit%20message%20can%20be%20helpful.</a></p></li>
+<li><p><a class="reference external" href="https://github.com/github-changelog-generator/github-changelog-generator">https://github.com/github-changelog-generator/github-changelog-generator</a></p></li>
+</ul>
+</section>
+</section>
+
+<div class="section">
+    
+
+<div class="section">
+  <span style="float: left">
+     Previous:
+    
+    <a href="2022-09-27-md-cheatsheet.html">
+       MarkDown Common Reference
+    </a>
+    
+  </span>
+  <span>&nbsp;</span>
+  <span style="float: right">
+     Next: 
+    <a href="2022-09-30-githubpage-tutorial.html">
+      GithubPage Sphinx Tutorial 
+    </a>
+    
+  </span>
+</div>
+  
+</div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<p class="logo">
+  <a href="../../index.html">
+    <img class="logo" src="../../_static/./logo/muaythai-bw.jpeg" alt="Logo"/>
+    
+  </a>
+</p>
+
+
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=zeyutiann&repo=quantmashup&type=watch&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+  
+<h2>
+   
+  28 September 2022 
+</h2>
+
+<ul>
+   
+<li id="author">
+  <span
+    >Author:</span
+  >
+   
+  <a href="../author/tian-zeyu.html">TIAN Zeyu</a>  
+</li>
+   
+<li id="category">
+  <span
+    >Category:</span
+  >
+   
+  <a href="../category/documentation.html">Documentation</a>  
+</li>
+ 
+<li id="tags">
+  <span
+    >Tag:</span
+  >
+   
+  <a href="../tag/git.html">git</a>  
+</li>
+ 
+</ul>
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../about.html">About This Blog</a></li>
+</ul>
+
+
+<h3>
+  <a href="../../blog.html">Recent Posts</a>
+</h3>
+<ul>
+   
+  <li>
+    <a href="2022-09-29-sphinx-document-a-project.html"
+      >29 October - Sphinx</a
+    >
+  </li>
+  
+  <li>
+    <a href="../2022-10/2022-10-27-design-pattern-composite.html"
+      >27 October - Composite Design Pattern</a
+    >
+  </li>
+  
+  <li>
+    <a href="../2022-10/2022-10-26-design-pattern-observer.html"
+      >26 October - Observer Pattern</a
+    >
+  </li>
+  
+  <li>
+    <a href="../2022-10/2022-10-25-design-pattern-builder.html"
+      >25 October - Builder Pattern</a
+    >
+  </li>
+  
+  <li>
+    <a href="../2022-10/2022-10-24-design-pattern-mvc-mvp-mvvm.html"
+      >24 October - MVC, MVP and MVVM</a
+    >
+  </li>
+  
+</ul>
+
+<h3><a href="../tag.html">Tags</a></h3>
+<style type="text/css">
+  ul.ablog-cloud {
+    list-style: none;
+    overflow: auto;
+  }
+  ul.ablog-cloud li {
+    float: left;
+    height: 20pt;
+    line-height: 18pt;
+    margin-right: 5px;
+  }
+  ul.ablog-cloud a {
+    text-decoration: none;
+    vertical-align: middle;
+  }
+  li.ablog-cloud-1 {
+    font-size: 80%;
+  }
+  li.ablog-cloud-2 {
+    font-size: 95%;
+  }
+  li.ablog-cloud-3 {
+    font-size: 110%;
+  }
+  li.ablog-cloud-4 {
+    font-size: 125%;
+  }
+  li.ablog-cloud-5 {
+    font-size: 140%;
+  }
+</style>
+<ul class="ablog-cloud">
+   
+  <li class="ablog-cloud ablog-cloud-1">
+    <a href="../tag/builder.html">Builder</a>
+  </li>
+    
+  <li class="ablog-cloud ablog-cloud-1">
+    <a href="../tag/composite.html">Composite</a>
+  </li>
+    
+  <li class="ablog-cloud ablog-cloud-1">
+    <a href="../tag/mvc.html">MVC</a>
+  </li>
+    
+  <li class="ablog-cloud ablog-cloud-1">
+    <a href="../tag/mvp.html">MVP</a>
+  </li>
+    
+  <li class="ablog-cloud ablog-cloud-1">
+    <a href="../tag/mvvm.html">MVVM</a>
+  </li>
+    
+  <li class="ablog-cloud ablog-cloud-1">
+    <a href="../tag/observer.html">Observer</a>
+  </li>
+    
+  <li class="ablog-cloud ablog-cloud-1">
+    <a href="../tag/recursive-function.html">Recursive Function</a>
+  </li>
+    
+  <li class="ablog-cloud ablog-cloud-1">
+    <a href="../tag/git.html">git</a>
+  </li>
+    
+  <li class="ablog-cloud ablog-cloud-1">
+    <a href="../tag/githubpage.html">githubpage</a>
+  </li>
+    
+  <li class="ablog-cloud ablog-cloud-1">
+    <a href="../tag/markdown.html">markdown</a>
+  </li>
+    
+  <li class="ablog-cloud ablog-cloud-1">
+    <a href="../tag/pep8.html">pep8</a>
+  </li>
+    
+  <li class="ablog-cloud ablog-cloud-1">
+    <a href="../tag/poetry.html">poetry</a>
+  </li>
+    
+  <li class="ablog-cloud ablog-cloud-1">
+    <a href="../tag/pytest.html">pytest</a>
+  </li>
+    
+  <li class="ablog-cloud ablog-cloud-5">
+    <a href="../tag/sphinx.html">sphinx</a>
+  </li>
+    
+  <li class="ablog-cloud ablog-cloud-1">
+    <a href="../tag/tutorial.html">tutorial</a>
+  </li>
+   
+</ul>
+
+<h3>
+  <a href="../category.html">Categories</a>
+</h3>
+<ul>
+   
+  <li>
+    <a href="../category/algorithm.html">Algorithm (1)</a>
+  </li>
+    
+  <li>
+    <a href="../category/chores.html">Chores (1)</a>
+  </li>
+    
+  <li>
+    <a href="../category/designpattern.html">DesignPattern (4)</a>
+  </li>
+    
+  <li>
+    <a href="../category/documentation.html">Documentation (3)</a>
+  </li>
+    
+  <li>
+    <a href="../category/python.html">Python (2)</a>
+  </li>
+   
+</ul>
+
+<h3>
+  <a href="../archive.html">Archives</a>
+</h3>
+<ul>
+   
+  <li>
+    <a href="../2022.html">2022 (11)</a>
+  </li>
+   
+</ul>
+
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2022, TIAN Zeyu.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.2.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../../_sources/blog/2022-09/2022-09-28-git-cheatsheet.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

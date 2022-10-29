@@ -1,0 +1,457 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>MarkDown Common Reference &#8212; zeyutiann&#39;s blog  documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/jupyter-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/thebelab.css" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/thebelab-helper.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+ 
+<link
+  rel="alternate"
+  type="application/atom+xml"
+  href="../../blog/atom.xml"
+  title="Technical Blog"
+/>
+ 
+<style type="text/css">
+  ul.ablog-archive {
+    list-style: none;
+    overflow: auto;
+    margin-left: 0px;
+  }
+  ul.ablog-archive li {
+    float: left;
+    margin-right: 5px;
+    font-size: 80%;
+  }
+  ul.postlist a {
+    font-style: italic;
+  }
+  ul.postlist-style-disc {
+    list-style-type: disc;
+  }
+  ul.postlist-style-none {
+    list-style-type: none;
+  }
+  ul.postlist-style-circle {
+    list-style-type: circle;
+  }
+</style>
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+             <section id="markdown-common-reference">
+<h1>MarkDown Common Reference<a class="headerlink" href="#markdown-common-reference" title="Permalink to this heading">¶</a></h1>
+<section id="image-reference">
+<h2>Image Reference<a class="headerlink" href="#image-reference" title="Permalink to this heading">¶</a></h2>
+<p>Here’s our logo (hover to see the title text):</p>
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span>Here&#39;s our logo (hover to see the title text):
+
+Inline-style: 
+![<span class="nt">alt text</span>](<span class="na">https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png &quot;Logo Title Text 1&quot;</span>)
+
+Reference-style: 
+![alt text][logo]
+
+[<span class="nl">logo</span>]: <span class="na">https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png &quot;Logo Title Text 2&quot;</span>
+</pre></div>
+</div>
+<p>Inline-style:
+<img alt="alt text" src="https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png" /></p>
+<p>Reference-style:
+<img alt="alt text" src="https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png" /></p>
+</section>
+<section id="tables">
+<h2>Tables<a class="headerlink" href="#tables" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span>Colons can be used to align columns.
+
+| Tables        | Are           | Cool  |
+| ------------- |:-------------:| -----:|
+| col 3 is      | right-aligned | $1600 |
+| col 2 is      | centered      |   $12 |
+| zebra stripes | are neat      |    $1 |
+
+There must be at least 3 dashes separating each header cell.
+The outer pipes (|) are optional, and you don&#39;t need to make the 
+raw Markdown line up prettily. You can also use inline Markdown.
+
+Markdown | Less | Pretty
+--- | --- | ---
+<span class="ge">*Still*</span> | <span class="sb">`renders`</span> | <span class="gs">**nicely**</span>
+1 | 2 | 3
+</pre></div>
+</div>
+<p>Colons can be used to align columns.</p>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Tables</p></th>
+<th class="text-center head"><p>Are</p></th>
+<th class="text-right head"><p>Cool</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>col 3 is</p></td>
+<td class="text-center"><p>right-aligned</p></td>
+<td class="text-right"><p>$1600</p></td>
+</tr>
+<tr class="row-odd"><td><p>col 2 is</p></td>
+<td class="text-center"><p>centered</p></td>
+<td class="text-right"><p>$12</p></td>
+</tr>
+<tr class="row-even"><td><p>zebra stripes</p></td>
+<td class="text-center"><p>are neat</p></td>
+<td class="text-right"><p>$1</p></td>
+</tr>
+</tbody>
+</table>
+<p>There must be at least 3 dashes separating each header cell.
+The outer pipes (|) are optional, and you don’t need to make the
+raw Markdown line up prettily. You can also use inline Markdown.</p>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Markdown</p></th>
+<th class="head"><p>Less</p></th>
+<th class="head"><p>Pretty</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><em>Still</em></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">renders</span></code></p></td>
+<td><p><strong>nicely</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>2</p></td>
+<td><p>3</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="reference">
+<h1>Reference<a class="headerlink" href="#reference" title="Permalink to this heading">¶</a></h1>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet">https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet</a></p></li>
+</ul>
+</section>
+
+<div class="section">
+    
+
+<div class="section">
+  <span style="float: left">
+     Previous:
+    
+    <a href="2022-09-26-python-project.html">
+       Quick notes on starting a python projects
+    </a>
+    
+  </span>
+  <span>&nbsp;</span>
+  <span style="float: right">
+     Next: 
+    <a href="2022-09-28-git-cheatsheet.html">
+      Git Cheatsheet 
+    </a>
+    
+  </span>
+</div>
+  
+</div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<p class="logo">
+  <a href="../../index.html">
+    <img class="logo" src="../../_static/./logo/muaythai-bw.jpeg" alt="Logo"/>
+    
+  </a>
+</p>
+
+
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=zeyutiann&repo=quantmashup&type=watch&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+  
+<h2>
+   
+  27 September 2022 
+</h2>
+
+<ul>
+   
+<li id="author">
+  <span
+    >Author:</span
+  >
+   
+  <a href="../author/tian-zeyu.html">TIAN Zeyu</a>  
+</li>
+   
+<li id="category">
+  <span
+    >Category:</span
+  >
+   
+  <a href="../category/documentation.html">Documentation</a>  
+</li>
+ 
+<li id="tags">
+  <span
+    >Tag:</span
+  >
+   
+  <a href="../tag/markdown.html">markdown</a>  
+</li>
+ 
+</ul>
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../about.html">About This Blog</a></li>
+</ul>
+
+
+<h3>
+  <a href="../../blog.html">Recent Posts</a>
+</h3>
+<ul>
+   
+  <li>
+    <a href="2022-09-29-sphinx-document-a-project.html"
+      >29 October - Sphinx</a
+    >
+  </li>
+  
+  <li>
+    <a href="../2022-10/2022-10-27-design-pattern-composite.html"
+      >27 October - Composite Design Pattern</a
+    >
+  </li>
+  
+  <li>
+    <a href="../2022-10/2022-10-26-design-pattern-observer.html"
+      >26 October - Observer Pattern</a
+    >
+  </li>
+  
+  <li>
+    <a href="../2022-10/2022-10-25-design-pattern-builder.html"
+      >25 October - Builder Pattern</a
+    >
+  </li>
+  
+  <li>
+    <a href="../2022-10/2022-10-24-design-pattern-mvc-mvp-mvvm.html"
+      >24 October - MVC, MVP and MVVM</a
+    >
+  </li>
+  
+</ul>
+
+<h3><a href="../tag.html">Tags</a></h3>
+<style type="text/css">
+  ul.ablog-cloud {
+    list-style: none;
+    overflow: auto;
+  }
+  ul.ablog-cloud li {
+    float: left;
+    height: 20pt;
+    line-height: 18pt;
+    margin-right: 5px;
+  }
+  ul.ablog-cloud a {
+    text-decoration: none;
+    vertical-align: middle;
+  }
+  li.ablog-cloud-1 {
+    font-size: 80%;
+  }
+  li.ablog-cloud-2 {
+    font-size: 95%;
+  }
+  li.ablog-cloud-3 {
+    font-size: 110%;
+  }
+  li.ablog-cloud-4 {
+    font-size: 125%;
+  }
+  li.ablog-cloud-5 {
+    font-size: 140%;
+  }
+</style>
+<ul class="ablog-cloud">
+   
+  <li class="ablog-cloud ablog-cloud-1">
+    <a href="../tag/builder.html">Builder</a>
+  </li>
+    
+  <li class="ablog-cloud ablog-cloud-1">
+    <a href="../tag/composite.html">Composite</a>
+  </li>
+    
+  <li class="ablog-cloud ablog-cloud-1">
+    <a href="../tag/mvc.html">MVC</a>
+  </li>
+    
+  <li class="ablog-cloud ablog-cloud-1">
+    <a href="../tag/mvp.html">MVP</a>
+  </li>
+    
+  <li class="ablog-cloud ablog-cloud-1">
+    <a href="../tag/mvvm.html">MVVM</a>
+  </li>
+    
+  <li class="ablog-cloud ablog-cloud-1">
+    <a href="../tag/observer.html">Observer</a>
+  </li>
+    
+  <li class="ablog-cloud ablog-cloud-1">
+    <a href="../tag/recursive-function.html">Recursive Function</a>
+  </li>
+    
+  <li class="ablog-cloud ablog-cloud-1">
+    <a href="../tag/git.html">git</a>
+  </li>
+    
+  <li class="ablog-cloud ablog-cloud-1">
+    <a href="../tag/githubpage.html">githubpage</a>
+  </li>
+    
+  <li class="ablog-cloud ablog-cloud-1">
+    <a href="../tag/markdown.html">markdown</a>
+  </li>
+    
+  <li class="ablog-cloud ablog-cloud-1">
+    <a href="../tag/pep8.html">pep8</a>
+  </li>
+    
+  <li class="ablog-cloud ablog-cloud-1">
+    <a href="../tag/poetry.html">poetry</a>
+  </li>
+    
+  <li class="ablog-cloud ablog-cloud-1">
+    <a href="../tag/pytest.html">pytest</a>
+  </li>
+    
+  <li class="ablog-cloud ablog-cloud-5">
+    <a href="../tag/sphinx.html">sphinx</a>
+  </li>
+    
+  <li class="ablog-cloud ablog-cloud-1">
+    <a href="../tag/tutorial.html">tutorial</a>
+  </li>
+   
+</ul>
+
+<h3>
+  <a href="../category.html">Categories</a>
+</h3>
+<ul>
+   
+  <li>
+    <a href="../category/algorithm.html">Algorithm (1)</a>
+  </li>
+    
+  <li>
+    <a href="../category/chores.html">Chores (1)</a>
+  </li>
+    
+  <li>
+    <a href="../category/designpattern.html">DesignPattern (4)</a>
+  </li>
+    
+  <li>
+    <a href="../category/documentation.html">Documentation (3)</a>
+  </li>
+    
+  <li>
+    <a href="../category/python.html">Python (2)</a>
+  </li>
+   
+</ul>
+
+<h3>
+  <a href="../archive.html">Archives</a>
+</h3>
+<ul>
+   
+  <li>
+    <a href="../2022.html">2022 (11)</a>
+  </li>
+   
+</ul>
+
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2022, TIAN Zeyu.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.2.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../../_sources/blog/2022-09/2022-09-27-md-cheatsheet.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

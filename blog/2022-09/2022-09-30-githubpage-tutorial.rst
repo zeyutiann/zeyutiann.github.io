@@ -1,7 +1,7 @@
 
 .. Jacob's blog post example, created by `ablog start` on Oct 06, 2022.
 
-.. post:: 2022.10.01
+.. post:: 2022.09.30
    :tags: githubpage, sphinx, tutorial
    :category: Chores
    :author: TIAN Zeyu
@@ -285,6 +285,7 @@ reference:
 - https://nbsphinx.readthedocs.io/en/0.8.9/
 - https://github.com/executablebooks/sphinx-tabs
 - https://mermaid-js.github.io/mermaid/#/README
+- https://stackoverflow.com/questions/23211695/modifying-content-width-of-the-sphinx-theme-read-the-docs
 
 
 
